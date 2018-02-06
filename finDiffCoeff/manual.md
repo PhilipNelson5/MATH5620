@@ -1,11 +1,11 @@
 ---
-title: Machine Epsilon
+title: Finite Difference Coefficients
 layout: default
 ---
-<a href="https://philipnelson5.github.io/class-projects/MATH5620_NumericalSolutionsOfDifferentialEquations/SoftwareManual"> Table of Contents </a>
-# Machine Epsilon
+<a href="https://philipnelson5.github.io/MATH5620/SoftwareManual"> Table of Contents </a>
+# Finite Difference Coefficients
 
-**Routine Name:** maceps
+**Routine Name:** centralFinDiffCoeff
 
 **Author:** Philip Nelson
 
@@ -13,39 +13,41 @@ layout: default
 
 ## Description
 
-`maceps` returns the machine epsilon and precision of any primitive type. A make file is included with a driver program that compares `maceps` to `std::numeric_limits<T>::epsilon()`.
+`centralFinDiffCoeff` returns a vector of the coefficients for finite difference approximations of an arbitrary order of accuracy for a given derivative. This routine uses binomial coefficients to calculate the coefficients with the formula below:
+
+\\[ \delta_{h}^{n}[f](x)=\sum _{i=0}^{n}(-1)^{i}{\binom{n}{i}}f\left(x+\left({\frac{n}{2}}-i\right)h\right)\\]
 
 ```
 $ make
-$ ./maceps.out
+$ ./finDiffCoeff.out
 ```
 
 This will compile and run the driver program.
 
 ## Input
 
-`maceps<T>( )` requires a template argument _T_ with the type of machine epsilon you want _( float, double, long double, etc... )_. Otherwise, `maceps` takes no input.
+`std::vector<T> centralFinDiffCoeff(unsigned int const& n, unsigned int const& h, F f, T x)`
+
+* `unsigned int n` - order of the derivative
+* `unsigned int h` - the value of \\(h\\)
+* `F f` - the function \\(f\\), given as a lambda
+* `T x` - the point where \\(f\\) is evaluated at
 
 ## Output
 
-maceps returns an `eps` struct with members `int prec` which holds the precision and `T maceps` which holds the machine epsilon for the specified type.
+`centralFinDiffCoeff` returns a vector of coefficients.
 
 ## Code
 {% highlight c++ %}
-template <typename T>
-eps<T> maceps()
+template <typename T, typename F>
+std::vector<T> centralFinDiffCoeff(unsigned int const& n, unsigned int const& h, F f, T x)
 {
-  T e = 1;
-  T one = 1;
-  T half = 0.5;
-  int prec = 1;
-  while (one + e * half > one)
+  std::vector<T> coeffs;
+  for (auto i = 0u; i <= n; ++i)
   {
-    e *= half;
-    ++prec;
+    coeffs.push_back(pow(-1, i) * binCoeff(n, i) * f(x + (n / 2.0 - i) * h));
   }
-
-  return eps(prec, e);
+  return coeffs;
 }
 {% endhighlight %}
 
@@ -53,20 +55,17 @@ eps<T> maceps()
 {% highlight c++ %}
 int main()
 {
-  auto doubleeps = maceps<double>();
-  std::cout << "double\n";
-  std::cout << "precision:\t"    << doubleeps.prec << std::endl;
-  std::cout << "maceps:\t\t"     << doubleeps.maceps << std::endl;
-  std::cout << "std::numeric:\t" << std::numeric_limits<double>::epsilon() << std::endl << std::endl;
+  auto coeffs = centralFinDiffCoeff(2, 1e-10, [](double x) { return x; }, 5);
+  for (auto&& c : coeffs)
+    std::cout << c << " ";
+  std::cout << std::endl;
+  return EXIT_SUCCESS;
 }
 {% endhighlight %}
 
 ## Result
 ```
-double
-precision:	53
-maceps:		2.22045e-16
-std::numeric:	2.22045e-16
+5 -10 5
 ```
 
 **Last Modification date:** 11 January 2018
