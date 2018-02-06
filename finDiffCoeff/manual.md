@@ -19,7 +19,11 @@ layout: default
 
 `centralFinDiffCoeff` returns a vector of the coefficients for finite difference approximations of an arbitrary order of accuracy for a given derivative. This routine uses binomial coefficients to calculate the coefficients with the formula below:
 
-\\[ \delta_{h}^{n}[f](x)=\sum _{i=0}^{n}(-1)^{i}{\binom{n}{i}}f\left(x+\left({\frac{n}{2}}-i\right)h\right)\\]
+\\[ \delta_{h}^{n}f(x)=\sum _{i=0}^{n}(-1)^{i}{\binom{n}{i}}f\left(x+\left({\frac{n}{2}}-i\right)h\right) \\]
+
+\\[ \sum _{i=0}^{n}(-1)^{i}{\binom{n}{i}}f\left(x+\left({\frac{n}{2}}-i\right)h\right) \\]
+
+\\[ \delta_{h}^{n}(x)=\sum _{i=0}^{n}(-1)^{i}{\binom{n}{i}}f\left(x+\left({\frac{n}{2}}-i\right)h\right) \\]
 
 ```
 $ make
