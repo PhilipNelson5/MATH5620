@@ -1,5 +1,6 @@
 ---
 title: Finite Difference Coefficients
+math: true
 layout: default
 ---
 <a href="https://philipnelson5.github.io/MATH5620/SoftwareManual"> Table of Contents </a>

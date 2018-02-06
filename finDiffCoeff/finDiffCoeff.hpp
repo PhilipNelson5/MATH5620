@@ -24,12 +24,12 @@ unsigned int binCoeff(unsigned int const& n, unsigned int const& k)
 }
 
 template <typename T, typename F>
-std::vector<T> centralFinDiffCoeff(unsigned int const& n, unsigned int const& h, F f, T x)
+std::vector<T> centralFinDiffCoeff(unsigned int const& n, unsigned int const& h)
 {
   std::vector<T> coeffs;
   for (auto i = 0u; i <= n; ++i)
   {
-    coeffs.push_back(pow(-1, i) * binCoeff(n, i) * f(x + (n / 2.0 - i) * h));
+    coeffs.push_back(pow(-1, i) * binCoeff(n, i));
   }
   return coeffs;
 }
