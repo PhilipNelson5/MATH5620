@@ -202,28 +202,6 @@ public:
     return triDiagThomas(a, b, c, d);
   }
 
-  T dotProductLower(std::array<T, M> const& x, unsigned int const& n)
-  {
-    T sum = 0;
-    for (auto i = 0u; i < n; ++i)
-    {
-      std::cout << m[n][i] << " ";
-      sum += m[n][i] * x[i];
-    }
-    std::cout << std::endl;
-    return sum;
-  }
-
-  T dotProductUpper(std::array<T, M> const& x, unsigned int const& n)
-  {
-    T sum = 0;
-    for (auto i = n; i < M; ++i)
-    {
-      sum += m[n][i] * x[i];
-    }
-    return sum;
-  }
-
   bool allclose(std::array<T, M> a, std::array<T, M> b, double tol)
   {
     for (auto i = 0u; i < M; ++i)
