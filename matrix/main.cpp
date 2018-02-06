@@ -61,12 +61,16 @@ int main()
   //  std::cout << "PA\n" << P*x << std::endl;
   //  std::cout << "LU\n" << L*U << std::endl;
 
-  Matrix<double, 4, 4> l(
-      {{-2, 1, 0, 0}, {1, -2, 1, 0}, {0, 1, -2, 1}, {0, 0, 1, -2}});
+  // Matrix<double, 4, 4> l(
+      // {{-2, 1, 0, 0}, {1, -2, 1, 0}, {0, 1, -2, 1}, {0, 0, 1, -2}});
   //auto foo = l.triDiagThomas({0, 1, 1, 1}, {-2, -2, -2, -2}, {1, 1, 1, 0}, {0.04, 0.04, 0.04, 0.04});
-  auto foo = l.triDiagThomas({0.04, 0.04, 0.04, 0.04});
-  for(auto && e:foo)
-  {
-    std::cout << e << " " << std::endl;
-  }
+  // auto foo = l.triDiagThomas({0.04, 0.04, 0.04, 0.04});
+
+  Matrix<double, 4, 4> m ({
+      {10., -1., 2., 0.},
+      {-1., 11., -1., 3.},
+      {2., -1., 10., -1.},
+      {0.0, 3., -1., 8.}});
+  std::array<double, 4> bee ({6., 25., -11., 15.});
+  std::cout << m.jacobiIteration(bee, 1000) << std::endl;
 }

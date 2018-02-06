@@ -232,4 +232,15 @@ std::ostream& operator<<(std::ostream& o, Matrix<T, M, N> const& m)
   return o;
 }
 
+template <typename T, std::size_t M>
+std::ostream& operator<<(std::ostream& o, std::array<T, M> const& a)
+{
+  o << "[ ";
+  for (auto i = 0u; i < M; ++i)
+    o << std::setw(15) << std::setprecision(5) << std::setfill(' ') << a[i];
+  o << "]" << std::endl;
+
+  return o;
+}
+
 #endif

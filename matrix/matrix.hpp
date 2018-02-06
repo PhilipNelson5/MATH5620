@@ -3,8 +3,10 @@
 
 #include "matrix_util.hpp"
 #include "random.hpp"
+#include "../machineEpsilon/maceps.hpp"
 #include <algorithm>
 #include <array>
+#include <cmath>
 #include <iostream>
 #include <vector>
 
@@ -103,7 +105,8 @@ public:
     T max = row;
     for (auto i = row + 1; i < M; ++i)
     {
-      if (std::abs(m[i][col]) > std::abs(m[max][col])) max = i;
+      if (std::abs(m[i][col]) > std::abs(m[max][col]))
+        max = i;
     }
     return max;
   }
@@ -197,6 +200,69 @@ public:
     std::cout << std::endl;
 
     return triDiagThomas(a, b, c, d);
+  }
+
+  T dotProductLower(std::array<T, M> const& x, unsigned int const& n)
+  {
+    T sum = 0;
+    for (auto i = 0u; i < n; ++i)
+    {
+      std::cout << m[n][i] << " ";
+      sum += m[n][i] * x[i];
+    }
+    std::cout << std::endl;
+    return sum;
+  }
+
+  T dotProductUpper(std::array<T, M> const& x, unsigned int const& n)
+  {
+    T sum = 0;
+    for (auto i = n; i < M; ++i)
+    {
+      sum += m[n][i] * x[i];
+    }
+    return sum;
+  }
+
+  bool allclose(std::array<T, M> a, std::array<T, M> b, double tol)
+  {
+    for (auto i = 0u; i < M; ++i)
+      if (std::abs(a[i] - b[i]) > tol)
+        return false;
+    return true;
+  }
+
+  std::array<T, M> jacobiIteration(std::array<T, M> const& b, unsigned int const& MAX)
+  {
+    std::array<T, M> zeros;
+    zeros.fill(0);
+
+    std::array<T, M> x = zeros;
+
+    for (auto n = 0u; n < MAX; ++n)
+    {
+      std::cout << "[current]" << x;
+      auto x_n = zeros;
+
+      for (auto i = 0u; i < M; ++i)
+      {
+        T sum = 0;
+        for (auto j = 0u; j < N; ++j)
+        {
+          if (j == i)
+            continue;
+          sum += m[i][j] * x[j];
+        }
+        x_n[i] = (b[i] - sum) / m[i][i];
+      }
+
+      if (allclose(x, x_n, maceps<T>().maceps))
+        break;
+
+      x = x_n;
+    }
+
+    return x;
   }
 
 private:
