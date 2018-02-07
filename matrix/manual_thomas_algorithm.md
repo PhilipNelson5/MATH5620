@@ -21,26 +21,9 @@ layout: default
 
 ## Input
 
-`triDiagThomas` can be called in two ways:
+`triDiagThomas(std::array<T, M> const& d)` is called by a `Matrix<T, M, M> of type `T` and size `M`x`M` and requires:
 
-#### Method 1:
-{% highlight c++ %}
-std::array<T, M> triDiagThomas(std::array<T, M> const& d)
-{% endhighlight %}
 
-* `std::array<T, M> d` - an array of type `T` and size `M` (d vector)
-
-#### Method 2:
-{% highlight c++ %}
-std::array<T, M> triDiagThomas(std::array<T, M> const& a,
-                               std::array<T, M> const& b,
-                               std::array<T, M> const& c,
-                               std::array<T, M> const& d)
-{% endhighlight %}
-
-* `std::array<T, M> a` - an array of type `T` and size `M` (main diagonal)
-* `std::array<T, M> b` - an array of type `T` and size `M` (lower diagonal)
-* `std::array<T, M> c` - an array of type `T` and size `M` (upper diagonal)
 * `std::array<T, M> d` - an array of type `T` and size `M` (d vector)
 
 ## Output
@@ -79,10 +62,10 @@ std::array<T, M> triDiagThomas(std::array<T, M> const& a,
 int main()
 {
   Matrix<double, 4, 4> A({
-    {-2, 1, 0, 0},
-    {1, -2, 1, 0},
-    {0, 1, -2, 1},
-    {0, 0, 1, -2}
+                         {-2,  1,  0,  0},
+                         { 1, -2,  1,  0},
+                         { 0,  1, -2,  1},
+                         { 0,  0,  1, -2}
     });
   std::array<double, 4> x = {4, -3, 5, 1};
 
