@@ -122,7 +122,7 @@ public:
   std::tuple<Matrix<T, N, N>, Matrix<T, N, N>, Matrix<T, N, N>> luFactorize()
   {
     auto I = identity<T, N>();
-    auto P = identity<T, N>();
+    auto P = I;
     Matrix<T, N, N> L(0);
     Matrix<T, N, N> U(m);
     std::vector<std::vector<unsigned int>> swaps;
@@ -137,7 +137,7 @@ public:
         swaps.push_back({j, largest});
       }
       auto pivot = U[j][j];
-      auto mod = identity<T, N>();
+      auto mod = I;
       for (auto i = j + 1; i < N; ++i) // rows
       {
         mod[i][j] = -U[i][j] / pivot;

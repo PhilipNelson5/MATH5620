@@ -28,6 +28,7 @@ layout: default
 
 * `std::array<T, M> d` - an array of type `T` and size `M` (d vector)
 
+#### Method 2:
 ```
 std::array<T, M> triDiagThomas(std::array<T, M> const& a,
                                std::array<T, M> const& b,
