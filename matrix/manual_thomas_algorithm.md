@@ -24,17 +24,19 @@ layout: default
 `triDiagThomas` can be called in two ways:
 
 #### Method 1:
-`std::array<T, M> triDiagThomas(std::array<T, M> const& d)`
+{% highlight c++ %}
+std::array<T, M> triDiagThomas(std::array<T, M> const& d)
+{% endhighlight %}
 
 * `std::array<T, M> d` - an array of type `T` and size `M` (d vector)
 
 #### Method 2:
-```
+{% highlight c++ %}
 std::array<T, M> triDiagThomas(std::array<T, M> const& a,
                                std::array<T, M> const& b,
                                std::array<T, M> const& c,
                                std::array<T, M> const& d)
-```
+{% endhighlight %}
 
 * `std::array<T, M> a` - an array of type `T` and size `M` (main diagonal)
 * `std::array<T, M> b` - an array of type `T` and size `M` (lower diagonal)
