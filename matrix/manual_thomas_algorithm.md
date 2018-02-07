@@ -21,7 +21,7 @@ layout: default
 
 ## Input
 
-`triDiagThomas(std::array<T, M> const& d)` is called by a `Matrix<T, M, M> of type `T` and size `M`x`M` and requires:
+`triDiagThomas(std::array<T, M> const& d)` is called by a `Matrix<T, M, M>` of type `T` and size `M`x`M` and requires:
 
 
 * `std::array<T, M> d` - an array of type `T` and size `M` (d vector)
