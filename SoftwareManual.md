@@ -12,4 +12,4 @@ title: MATH 5620 Software Manual
 - [Finite Difference Coefficients](./finDiffCoeff/manual)
 - [Thomas Algorithm](./matrix/manual_thomas_algorithm)
 - [Linear Solver by LU Factorization](./matrix/manual_lu_factorization)
-- [Thomas Algorithm](./matrix/manual_thomas_algorithm)
+- [Thomas Algorithm](./matrix/manual_jacobi_iteration)
