@@ -20,11 +20,18 @@ layout: default
 `triDiagThomas` solves a tridiagonal linear system of equations using the Thomas Algorithm.
 
 \\[\begin{bmatrix}
- b_0&  c_0&     &  &0 \\ 
- a_1&  b_1&  c_1&     & \\ 
-    &  a_2&  b_2& \ddots& \\ 
-    &     & \ddots&\ddots&c_{n-2} \\ 
- 0&  &  & a_{n-1}  &b_{n-2} 
+
+b_{1}&{c_{1}&{}&{}&{0}\\{a_{2}&{b_{2}&{c_{2}&{}&{}\\{}&{a_{3}&{b_{3}&\ddots &{}\\{}&{}&\ddots &\ddots &{c_{n-1}\\{0}&{}&{}&{a_{n}&{b_{n}\\
+\end{bmatrix}
+
+\begin{bmatrix}
+{x_{1}}\\{x_{2}}\\{x_{3}}\\\vdots \\{x_{n}}\\
+\end{bmatrix}
+
+=
+
+\begin{bmatrix}
+d_{1}}\\{d_{2}}\\{d_{3}\\\vdots \\{d_{n}\\
 \end{bmatrix} \\]
 
 ## Input
