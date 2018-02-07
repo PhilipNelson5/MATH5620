@@ -7,6 +7,31 @@ title: MATH 5620 Software Manual
 
 # Table of Contents
 
+### Homework 1
+
+
+
+### Homework 2
+#### Problem 1-2.
+- [Finite Difference Coefficients](./finDiffCoeff/manual)
+#### Problem 3.
+- [Initialize Elliptic ODE](./finDiffCoeff/manual)
+#### Problem 4.
+- [Thomas Algorithm](./matrix/manual_thomas_algorithm)
+#### Problem 5.
+- [Linear Solver by LU Factorization](./matrix/manual_linear_solve_lu)
+  - [Lu Factorization](./matrix./manual_lu_factorization)
+  - [Forward Substitution](./matrix./manual_forward_sub)
+  - [Back Substitution](./matrix./manual_back_sub)
+#### Problem 6.
+- [Jacobi Iteration](./matrix/manual_jacobi_iteration)
+#### Problem 8.
+- [Vector P Norm](./matrix/manual_pnorm)
+- [Vector Infinity Norm](./matrix/manual_infinity_norm)
+#### Problem 9.
+- [Approximate Elliptic ODE](./finDiffCoeff/manual)
+
+
 ### Basic Routines
 - [Machine Epsilon](./machineEpsilon/manual)
 - [Absolute and Relative Error](./error/manual)
@@ -25,5 +50,5 @@ title: MATH 5620 Software Manual
   - [Forward Substitution](./matrix./manual_forward_sub)
   - [Back Substitution](./matrix./manual_back_sub)
 
-### Finite Difference Methods 
+### Finite Difference Methods
 - [Finite Difference Coefficients](./finDiffCoeff/manual)
