@@ -10,6 +10,10 @@ title: MATH 5620 Software Manual
 - [Logistic Differential Equation](./logistic/manual)
 - [Second Order Linear DE with Constant Coefficients](./secondOrderLinear/manual)
 
+### Norms
+- [Vector P Norm](./matrix/manual_pnorm)
+- [Vector Infinity Norm](./matrix/manual_infinity_norm)
+
 - [Finite Difference Coefficients](./finDiffCoeff/manual)
 
 ### Linear Solvers
