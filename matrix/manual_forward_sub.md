@@ -51,11 +51,10 @@ std::array<T, M> forwardSub(std::array<T, M> b)
 {% highlight c++ %}
 int main()
 {
-  Matrix<double, 4, 4> L({{ 1,  0,  0,  0},
-                          { 5,  1,  0,  0},
-                          { 4, -6,  1,  0},
-                          {-4,  5, -9,  1}
-                          });
+  Matrix<double, 4, 4> L({ { 1,  0,  0,  0},
+                           { 5,  1,  0,  0},
+                           { 4, -6,  1,  0},
+                           {-4,  5, -9,  1} });
 
   std::array<double, 4> y{3, 5, -6, 8};
   auto b = L * y;
