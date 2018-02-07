@@ -8,10 +8,19 @@ title: MATH 5620 Software Manual
 # Table of Contents
 
 ### Homework 1
-
+due: 25 January 2017
+#### Problem 2-3.
+- [Machine Epsilon](./machineEpsilon/manual)
+#### Problem 4.
+- [Absolute and Relative Error](./error/manual)
+#### Problem 6.
+- [Logistic Differential Equation](./logistic/manual)
+#### Problem 7.
+- [Second Order Linear DE with Constant Coefficients](./secondOrderLinear/manual)
 
 
 ### Homework 2
+due: 8 February 2017
 #### Problem 1-2.
 - [Finite Difference Coefficients](./finDiffCoeff/manual)
 #### Problem 3.
@@ -31,6 +40,7 @@ title: MATH 5620 Software Manual
 #### Problem 9.
 - [Approximate Elliptic ODE](./finDiffCoeff/manual)
 
+-----
 
 ### Basic Routines
 - [Machine Epsilon](./machineEpsilon/manual)
