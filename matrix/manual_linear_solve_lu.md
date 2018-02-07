@@ -17,11 +17,16 @@ layout: default
 
 ## Description
 
-`solveLinearSystemLU` solves a linear system of equations by LU Factorization.
+`solveLinearSystemLU` solves a linear system of equations \\(Ax=b\\) by LU Factorization. The method used is:
+
+\\[LU=PA\\]
+\\[LUx = Pb\\]
+\\[Ly = Pb\\]
+\\[Ux=y\\]
 
 ## Input
 
-`std::array<T, M> solveLinearSystemLU(std::array<T, M> b)` is called by a `Matrix<T, M, M> of type `T` and size `MxM` and requires:
+`solveLinearSystemLU(std::array<T, M> b)` is called by a `Matrix<T, M, M> of type `T` and size `MxM` and requires:
 
 * `std::array<T, M> b` - a column vector `b` of type `T` and size `M`
 

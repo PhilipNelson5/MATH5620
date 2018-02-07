@@ -21,7 +21,7 @@ layout: default
 
 ## Input
 
-` forwardSub(std::array<T, M> b)` is called by a `Matrix<T, M, M> of type `T` and size `MxM` and requires:
+`forwardSub(std::array<T, M> b)` is called by a `Matrix<T, M, M> of type `T` and size `MxM` and requires:
 
 * `std::array<T, M> b` - a column vector `b` of type `T` and size `M`
 
