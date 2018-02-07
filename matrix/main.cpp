@@ -67,4 +67,7 @@ int main()
 
   std::cout << A.solveLinearSystemLU(B) << std::endl;
 
+  std::cout << B+X << std::endl;
+  std::cout << X-B << std::endl;
+
 }

@@ -89,52 +89,36 @@ T determinant(Matrix<T, N, N> const& a)
   return det;
 }
 
-/* Addition */
-template <typename T,
-          typename U,
-          std::size_t M,
-          std::size_t N,
-          typename R = decltype(T() + U())>
-Matrix<R, M, N> operator+(Matrix<T, M, N> const& a, Matrix<U, M, N> const& b)
-{
-  R matrix[M][N];
-  for (auto i = 0u; i < M; ++i)
-  {
-    for (auto j = 0u; j < N; ++j)
-    {
-      matrix[i][j] = a.get(i, j) + b.get(i, j);
-    }
+/* Addition and Subtraction */
+#define matrix_add_subtract(op)                                                               \
+  template <typename T,                                                                       \
+            typename U,                                                                       \
+            std::size_t M,                                                                    \
+            std::size_t N,                                                                    \
+            typename R = decltype(T() op U())>                                                \
+  Matrix<R, M, N> operator op(Matrix<T, M, N> const& a, Matrix<U, M, N> const& b)             \
+  {                                                                                           \
+    R matrix[M][N];                                                                           \
+    for (auto i = 0u; i < M; ++i)                                                             \
+    {                                                                                         \
+      for (auto j = 0u; j < N; ++j)                                                           \
+      {                                                                                       \
+        matrix[i][j] = a.get(i, j) op b.get(i, j);                                            \
+      }                                                                                       \
+    }                                                                                         \
+    return matrix;                                                                            \
   }
-  return matrix;
-}
 
-/* Subtraction */
-template <typename T,
-          typename U,
-          std::size_t M,
-          std::size_t N,
-          typename R = decltype(T() - U())>
-Matrix<R, M, N> operator-(Matrix<T, M, N> const& a, Matrix<U, M, N> const& b)
-{
-  R matrix[M][N];
-  for (auto i = 0u; i < M; ++i)
-  {
-    for (auto j = 0u; j < N; ++j)
-    {
-      matrix[i][j] = a.get(i, j) - b.get(i, j);
-    }
-  }
-  return matrix;
-}
+matrix_add_subtract(+) matrix_add_subtract(-)
 
-/* Multiplication */
-template <typename T,
-          typename U,
-          std::size_t M,
-          std::size_t N,
-          std::size_t O,
-          typename R = decltype(T() * U())>
-Matrix<R, M, O> operator*(Matrix<T, M, N> const& a, Matrix<U, N, O> const& b)
+  /* Multiplication  Matrix * Matrix*/
+  template <typename T,
+            typename U,
+            std::size_t M,
+            std::size_t N,
+            std::size_t O,
+            typename R = decltype(T() * U())>
+  Matrix<R, M, O> operator*(Matrix<T, M, N> const& a, Matrix<U, N, O> const& b)
 {
   R matrix[M][O];
   for (auto i = 0u; i < M; ++i)
@@ -147,7 +131,7 @@ Matrix<R, M, O> operator*(Matrix<T, M, N> const& a, Matrix<U, N, O> const& b)
   return matrix;
 }
 
-/* Multiplication Matrix X Array */
+/* Multiplication Matrix * Array */
 template <typename T,
           typename U,
           std::size_t M,
@@ -159,16 +143,16 @@ std::array<R, M> operator*(Matrix<T, M, N> const& a, std::array<U, N> const& b)
   for (auto i = 0u; i < M; ++i)
   {
     R sum = 0;
-      for (auto j = 0u; j < N; ++j)
-      {
-        sum += a.get(i, j) * b[j];
-      }
-      matrix[i] = sum;
+    for (auto j = 0u; j < N; ++j)
+    {
+      sum += a.get(i, j) * b[j];
+    }
+    matrix[i] = sum;
   }
   return matrix;
 }
 
-/* Scalar Multiplication a*scalar */
+/* Scalar Multiplication a * scalar */
 template <typename T,
           typename U,
           std::size_t M,
@@ -256,15 +240,5 @@ std::ostream& operator<<(std::ostream& o, Matrix<T, M, N> const& m)
   return o;
 }
 
-template <typename T, std::size_t M>
-std::ostream& operator<<(std::ostream& o, std::array<T, M> const& a)
-{
-  o << "[ ";
-  for (auto i = 0u; i < M; ++i)
-    o << std::setw(9) << std::setprecision(4) << std::setfill(' ') << a[i];
-  o << " ]" << std::endl;
-
-  return o;
-}
 
 #endif
