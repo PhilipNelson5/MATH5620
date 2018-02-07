@@ -24,6 +24,7 @@ layout: default
 `std::array<T, M> jacobiIteration(std::array<T, M> const& b, unsigned int const& MAX)` is called by a `Matrix<T, M, M> of type `T` and size `MxM` and requires:
 
 * `std::array<T, M> b` - a column vector `b` of type `T` and size `M`
+* `unsigned int MAX` - the max iterations (optional)
 
 ## Output
 
@@ -31,7 +32,7 @@ layout: default
 
 ## Code
 {% highlight c++ %}
-std::array<T, M> jacobiIteration(std::array<T, M> const& b, unsigned int const& MAX)
+std::array<T, M> jacobiIteration(std::array<T, M> const& b, unsigned int const& MAX = 1000)
 {
   std::array<T, M> zeros;
   zeros.fill(0);
