@@ -51,10 +51,10 @@ std::array<T, M> backSub(std::array<T, M> b)
 {% highlight c++ %}
 int main()
 {
-  Matrix<double, 4, 4> U({{ 3,  5, -6,  4},
-                          { 0,  4, -6,  9},
-                          { 0,  0,  3, 11},
-                          { 0,  0,  0, -9}});
+  Matrix<double, 4, 4> U({ { 3,  5, -6,  4},
+                           { 0,  4, -6,  9},
+                           { 0,  0,  3, 11},
+                           { 0,  0,  0, -9} });
 
   std::array<double, 4> x{4, 6, -7, 9};
   auto b = U * x;
