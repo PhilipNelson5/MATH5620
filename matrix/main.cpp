@@ -56,13 +56,17 @@ int main()
   test(pNorm(l, 1), 54, "one norm");
   test(infNorm(l), 20, "infinity norm");
 
-  Matrix<double, 4, 4> U({{3, 5, -6, 4}, {0, 4, -6, 9}, {0, 0, 3, 11}, {0, 0, 0, -9}});
-  std::array<double, 4> x{4, 6, -7, 9};
-  auto B = U * x;
+  // Matrix<double, 4, 4> U({{3, 5, -6, 4}, {0, 4, -6, 9}, {0, 0, 3, 11}, {0, 0, 0, -9}});
+  // std::array<double, 4> x{4, 6, -7, 9};
+  // auto B = U * x;
+//
+  // std::cout << " U\n" << U << std::endl;
+  // std::cout << " b\n" << B << std::endl;
+  // std::cout << " Real x\n" << x << std::endl;
+  // std::cout << " Calculated x\n";
+  // std::cout << U.backSub(B) << std::endl;
 
-  std::cout << " U\n" << U << std::endl;
-  std::cout << " b\n" << B << std::endl;
-  std::cout << " Real x\n" << x << std::endl;
-  std::cout << " Calculated x\n";
-  std::cout << U.backSub(B) << std::endl;
+  std::cout << " v" << l << std::endl;
+  std::cout << "1 Norm: " << pNorm(l, 1) << std::endl;
+  std::cout << "2 Norm: " << pNorm(l, 2) << std::endl;
 }
