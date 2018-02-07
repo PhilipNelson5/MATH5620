@@ -55,4 +55,16 @@ int main()
   test(j.findLargestInCol(1, 0), 2u, "find largest element in column");
   test(pNorm(l, 1), 54, "one norm");
   test(infNorm(l), 20, "infinity norm");
+
+  //Matrix<double, 4, 4> A1({{1, 0, 0, 0}, {1, 1, 0, 0}, {1, 1, 1, 0}, {1, 1, 1, 1}});
+  Matrix<double, 4, 4> A(1, 10);
+  //std::array<double, 4> B = {4, 7, 2, 5};
+  std::array<double, 4> X = {4, 7, 2, 5};
+  auto B = A*X;
+  std::cout << " A" << std::endl << A << std::endl;
+  std::cout << " b" << std::endl << B << std::endl;
+  std::cout << " x" << std::endl << X << std::endl;
+
+  std::cout << A.solveLinearSystemLU(B) << std::endl;
+
 }

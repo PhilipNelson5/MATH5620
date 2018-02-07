@@ -118,7 +118,7 @@ public:
         std::swap(m[j][i], m[i][j]);
   }
 
-  /* calculate the lower and upper triangles */
+  /* calculate the lower and upper triangles with a permutation matrix*/
   std::tuple<Matrix<T, N, N>, Matrix<T, N, N>, Matrix<T, N, N>> luFactorize()
   {
     auto I = identity<T, N>();
@@ -149,6 +149,44 @@ public:
     return {L, U, P};
   }
 
+  std::array<T, M> backSub(std::array<T, M> b)
+  {
+    std::array<T, M> x;
+    for (auto i = (int)M - 1; i >= 0; --i)
+    {
+      T sum = 0.0;
+      for (auto j = (unsigned int)i + 1; j < M; ++j)
+      {
+        sum += m[i][j] * x[j];
+      }
+      x[i] = (b[i] - sum) / m[i][i];
+    }
+    return x;
+  }
+
+  std::array<T, M> forwardSub(std::array<T, M> b)
+  {
+    std::array<T, M> y;
+    for (auto i = 0u; i < N; ++i)
+    {
+      T sum = 0.0;
+      for (auto j = 0u; j < i; ++j)
+      {
+        sum += m[i][j] * y[j];
+      }
+      y[i] = b[i] - sum;
+    }
+    return y;
+  }
+
+  std::array<T, M> solveLinearSystemLU(std::array<T, M> b)
+  {
+    auto[L, U, P] = luFactorize();
+    auto y = L.forwardSub(P * b);
+    auto x = U.backSub(y);
+    return x;
+  }
+
   std::array<T, M> triDiagThomas(std::array<T, M> const& a,
                                  std::array<T, M> const& b,
                                  std::array<T, M> const& c,
@@ -165,9 +203,6 @@ public:
     }
 
     x[N - 1] = dp[N - 1];
-
-    std::cout << "cp:" << cp << std::endl;
-    std::cout << "dp:" << dp << std::endl;
 
     for (auto i = (int)N - 2; i >= 0; --i)
     {

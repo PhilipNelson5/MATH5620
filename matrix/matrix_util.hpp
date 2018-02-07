@@ -261,8 +261,8 @@ std::ostream& operator<<(std::ostream& o, std::array<T, M> const& a)
 {
   o << "[ ";
   for (auto i = 0u; i < M; ++i)
-    o << std::setw(15) << std::setprecision(5) << std::setfill(' ') << a[i];
-  o << "]" << std::endl;
+    o << std::setw(9) << std::setprecision(4) << std::setfill(' ') << a[i];
+  o << " ]" << std::endl;
 
   return o;
 }
