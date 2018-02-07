@@ -1,5 +1,5 @@
 ---
-title: P Norm
+title: Infinity Norm
 math: true
 layout: default
 ---
@@ -9,7 +9,7 @@ layout: default
 <a href="https://philipnelson5.github.io/MATH5620/SoftwareManual"> Table of Contents </a>
 # Logistic Differential Equation
 
-**Routine Name:** pNorm
+**Routine Name:** infNorm
 
 **Author:** Philip Nelson
 
@@ -17,28 +17,27 @@ layout: default
 
 ## Description
 
-`pNorm` calculates the p norm of a vector
+`infNorm` calculates the infinity norm of a vector which is also the maximum element
 
 ## Input
 
-`pNorm(std::array<T, N> v, unsigned int const& p)` requires:
+`infNorm(std::array<T, N> v)` requires:
 
 * `std::array<T, N> v` - a column vector of type `T` and size `M`
-* `unsigned int p` - the p norm that is desired
 
 ## Output
 
-A double with the desired norm value.
+A double with the value of the infinity norm
 
 ## Code
 {% highlight c++ %}
 template <typename T, std::size_t N>
-double pNorm(std::array<T, N> v, unsigned int const& p)
+double infNorm(std::array<T, N> v)
 {
-  double sum = 0.0;
+  T max = std::abs(v[0]);
   for (auto&& x : v)
-    sum += std::pow(std::abs(x), p);
-  return std::pow(sum, 1.0 / p);
+    max = std::max(max, std::abs(x));
+  return max;
 }
 {% endhighlight %}
 
@@ -49,8 +48,7 @@ int main()
   std::array<double, 4> v = {11, 18, -20, 5};
 
   std::cout << " v\n" << v << std::endl;
-  std::cout << "1 Norm: " << pNorm(v, 1) << std::endl;
-  std::cout << "2 Norm: " << pNorm(v, 2) << std::endl;
+  std::cout << "Infinity Norm: " << infNorm(v) << std::endl;
 }
 {% endhighlight %}
 
@@ -59,8 +57,7 @@ int main()
  v
 [        11       18      -20        5 ]
 
-1 Norm: 54
-2 Norm: 29.5
+Infinity Norm: 20
 ```
 
 **Last Modification date:** 07 February 2018
