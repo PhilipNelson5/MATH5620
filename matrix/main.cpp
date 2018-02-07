@@ -1,7 +1,7 @@
 #include "matrix.hpp"
 #include "matrix_util.hpp"
-#include "vector_util.hpp"
 #include "termColors.hpp"
+#include "vector_util.hpp"
 #include <iostream>
 #include <string>
 
@@ -56,18 +56,28 @@ int main()
   test(pNorm(l, 1), 54, "one norm");
   test(infNorm(l), 20, "infinity norm");
 
-  //Matrix<double, 4, 4> A1({{1, 0, 0, 0}, {1, 1, 0, 0}, {1, 1, 1, 0}, {1, 1, 1, 1}});
-  Matrix<double, 4, 4> A(1, 10);
-  //std::array<double, 4> B = {4, 7, 2, 5};
-  std::array<double, 4> X = {4, 7, 2, 5};
-  auto B = A*X;
-  std::cout << " A" << std::endl << A << std::endl;
-  std::cout << " b" << std::endl << B << std::endl;
-  std::cout << " x" << std::endl << X << std::endl;
+  // Matrix<double, 4, 4> A1({{1, 0, 0, 0}, {1, 1, 0, 0}, {1, 1, 1, 0}, {1, 1, 1, 1}});
+  // Matrix<double, 4, 4> A(1, 10);
+  // std::array<double, 4> B = {4, 7, 2, 5};
+  // std::array<double, 4> X = {4, 7, 2, 5};
+  // auto B = A*X;
+  // std::cout << " A" << std::endl << A << std::endl;
+  // std::cout << " b" << std::endl << B << std::endl;
+  // std::cout << " x" << std::endl << X << std::endl;
+  //
+  // std::cout << A.solveLinearSystemLU(B) << std::endl;
+  //
+  // std::cout << B+X << std::endl;
+  // std::cout << X-B << std::endl;
 
-  std::cout << A.solveLinearSystemLU(B) << std::endl;
+  Matrix<double, 4, 4> __A({{-2, 1, 0, 0}, {1, -2, 1, 0}, {0, 1, -2, 1}, {0, 0, 1, -2}});
+  std::array<double, 4> __x = {4, -3, 5, 1};
 
-  std::cout << B+X << std::endl;
-  std::cout << X-B << std::endl;
+  auto __d = __A * __x;
+  auto testx = __A.triDiagThomas(__d);
 
+  std::cout << " A\n" << __A << std::endl;
+  std::cout << " d\n" << __d << std::endl;
+  std::cout << " Real x\n" << __x << std::endl;
+  std::cout << " Calculated x\n" << testx << std::endl;
 }

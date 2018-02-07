@@ -19,21 +19,6 @@ layout: default
 
 `triDiagThomas` solves a tridiagonal linear system of equations using the Thomas Algorithm.
 
-\\[\begin{bmatrix}
-
-b_{1}&{c_{1}&{}&{}&{0}\\{a_{2}&{b_{2}&{c_{2}&{}&{}\\{}&{a_{3}&{b_{3}&\ddots &{}\\{}&{}&\ddots &\ddots &{c_{n-1}\\{0}&{}&{}&{a_{n}&{b_{n}\\
-\end{bmatrix}
-
-\begin{bmatrix}
-{x_{1}}\\{x_{2}}\\{x_{3}}\\\vdots \\{x_{n}}\\
-\end{bmatrix}
-
-=
-
-\begin{bmatrix}
-d_{1}}\\{d_{2}}\\{d_{3}\\\vdots \\{d_{n}\\
-\end{bmatrix} \\]
-
 ## Input
 
 `triDiagThomas` can be called in two ways:
@@ -90,25 +75,41 @@ std::array<T, M> triDiagThomas(std::array<T, M> const& a,
 {% highlight c++ %}
 int main()
 {
-  double a = 1.0;
-  double b = 2.0;
-  double t = 50;
-  double p0 = 10.0;
+  Matrix<double, 4, 4> A({
+    {-2, 1, 0, 0},
+    {1, -2, 1, 0},
+    {0, 1, -2, 1},
+    {0, 0, 1, -2}
+    });
+  std::array<double, 4> x = {4, -3, 5, 1};
 
-  std::cout << "alpha:\t" << a << "\nbeta:\t" << b << "\ntime:\t" << t << "\nP0:\t" << p0 << std::endl;
+  auto d = A * x;
+  auto testx = A.triDiagThomas(d);
 
-  std::cout << "------------\nresult:\t" << logistic(a, b, t, p0) << std::endl;
+  std::cout << " A\n" << A << std::endl;
+  std::cout << " d\n" << d << std::endl;
+  std::cout << " Real x\n" << x << std::endl;
+  std::cout << " Calculated x\n" << testx << std::endl;
 }
 {% endhighlight %}
 
 ## Result
 ```
-alpha:	1
-beta:	2
-time:	50
-P0:	10
------------
-result:	0.5
+ A
+|        -2        1        0        0 |
+|         1       -2        1        0 |
+|         0        1       -2        1 |
+|         0        0        1       -2 |
+
+ d
+[       -11       15      -12        3 ]
+
+ Real x
+[         4       -3        5        1 ]
+
+ Calculated x
+[         4       -3        5        1 ]
+
 ```
 
-**Last Modification date:** 17 January 2018
+**Last Modification date:** 07 February 2018
