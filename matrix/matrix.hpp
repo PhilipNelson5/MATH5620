@@ -238,7 +238,7 @@ public:
     return true;
   }
 
-  std::array<T, M> jacobiIteration(std::array<T, M> const& b, unsigned int const& MAX)
+  std::array<T, M> jacobiIteration(std::array<T, M> const& b, unsigned int const& MAX = 1000)
   {
     std::array<T, M> zeros;
     zeros.fill(0);
@@ -247,7 +247,6 @@ public:
 
     for (auto n = 0u; n < MAX; ++n)
     {
-      std::cout << "[current]" << x;
       auto x_n = zeros;
 
       for (auto i = 0u; i < M; ++i)
