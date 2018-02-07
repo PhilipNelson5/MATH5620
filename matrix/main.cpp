@@ -56,25 +56,13 @@ int main()
   test(pNorm(l, 1), 54, "one norm");
   test(infNorm(l), 20, "infinity norm");
 
-  // Matrix<double, 4, 4> A(1, 10); // random 4x4 with values from 0-10
-  Matrix<double, 4, 4> A({{-2, 1, 0, 0}, {1, -2, 1, 0}, {0, 1, -2, 1}, {0, 0, 1, -2}});
-  std::array<double, 4> X = {4, 7, 2, 5};
-  auto B = A*X;
-  std::cout << " A\n" << A << std::endl;
+  Matrix<double, 4, 4> U({{3, 5, -6, 4}, {0, 4, -6, 9}, {0, 0, 3, 11}, {0, 0, 0, -9}});
+  std::array<double, 4> x{4, 6, -7, 9};
+  auto B = U * x;
+
+  std::cout << " U\n" << U << std::endl;
   std::cout << " b\n" << B << std::endl;
-  std::cout << " x\n" << X << std::endl;
-
-  std::cout << "Calculated x\n";
-  std::cout << A.jacobiIteration(B) << std::endl;
-
-  // Matrix<double, 4, 4> __A({{-2, 1, 0, 0}, {1, -2, 1, 0}, {0, 1, -2, 1}, {0, 0, 1, -2}});
-  // std::array<double, 4> __x = {4, -3, 5, 1};
-//
-  // auto __d = __A * __x;
-  // auto testx = __A.triDiagThomas(__d);
-//
-  // std::cout << " A\n" << __A << std::endl;
-  // std::cout << " d\n" << __d << std::endl;
-  // std::cout << " Real x\n" << __x << std::endl;
-  // std::cout << " Calculated x\n" << testx << std::endl;
+  std::cout << " Real x\n" << x << std::endl;
+  std::cout << " Calculated x\n";
+  std::cout << U.backSub(B) << std::endl;
 }

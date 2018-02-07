@@ -92,11 +92,7 @@ public:
   /* Swap rows r1 and r2 */
   void swapRows(unsigned int const& r1, unsigned int const& r2)
   {
-    for (auto i = 0u; i < N; ++i)
-    {
-      std::swap(m[r1][i], m[r2][i]);
-    }
-    // return this;
+    std::swap(m[r1], m[r2]);
   }
 
   /* return the absolute largest element of a col starting at a given row */
@@ -125,7 +121,6 @@ public:
     auto P = I;
     Matrix<T, N, N> L(0);
     Matrix<T, N, N> U(m);
-    std::vector<std::vector<unsigned int>> swaps;
     for (auto j = 0u; j < N; ++j) // columns
     {
       auto largest = U.findLargestInCol(j, j);
@@ -134,7 +129,6 @@ public:
         L.swapRows(j, largest);
         U.swapRows(j, largest);
         P.swapRows(j, largest);
-        swaps.push_back({j, largest});
       }
       auto pivot = U[j][j];
       auto mod = I;
@@ -142,7 +136,7 @@ public:
       {
         mod[i][j] = -U[i][j] / pivot;
       }
-      L = -(mod - I) + L;
+      L = L + I - mod;
       U = mod * U;
     }
     L = I + L;
