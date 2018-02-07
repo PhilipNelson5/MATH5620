@@ -1,7 +1,10 @@
 ---
+layout: default
 title: MATH 5620 Software Manual
 ---
+
 <a href="https://philipnelson5.github.io">Home</a>
+
 # Table of Contents
 
 ### Basic Routines
@@ -14,8 +17,6 @@ title: MATH 5620 Software Manual
 - [Vector P Norm](./matrix/manual_pnorm)
 - [Vector Infinity Norm](./matrix/manual_infinity_norm)
 
-- [Finite Difference Coefficients](./finDiffCoeff/manual)
-
 ### Linear Solvers
 - [Thomas Algorithm](./matrix/manual_thomas_algorithm)
 - [Jacobi Iteration](./matrix/manual_jacobi_iteration)
@@ -23,3 +24,6 @@ title: MATH 5620 Software Manual
   - [Lu Factorization](./matrix./manual_lu_factorization)
   - [Forward Substitution](./matrix./manual_forward_sub)
   - [Back Substitution](./matrix./manual_back_sub)
+
+### Finite Difference Methods 
+- [Finite Difference Coefficients](./finDiffCoeff/manual)
