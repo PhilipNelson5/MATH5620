@@ -36,7 +36,8 @@ Matrix<T, M - 1, N> removeRow(Matrix<T, M, N> const& a, unsigned int n)
   int loc = 0;
   for (auto i = 0u; i < M; ++i)
   {
-    if (i == n) continue;
+    if (i == n)
+      continue;
     for (auto j = 0u; j < N; ++j)
     {
       matrix[loc][j] = a.get(i, j);
@@ -56,7 +57,8 @@ Matrix<T, M, N - 1> removeCol(Matrix<T, M, N> const& a, unsigned int n)
     int loc = 0;
     for (auto j = 0u; j < N; ++j)
     {
-      if (j == n) continue;
+      if (j == n)
+        continue;
       matrix[i][loc] = a.get(i, j);
       ++loc;
     }
@@ -145,6 +147,27 @@ Matrix<R, M, O> operator*(Matrix<T, M, N> const& a, Matrix<U, N, O> const& b)
   return matrix;
 }
 
+/* Multiplication Matrix X Array */
+template <typename T,
+          typename U,
+          std::size_t M,
+          std::size_t N,
+          typename R = decltype(T() * U())>
+std::array<R, M> operator*(Matrix<T, M, N> const& a, std::array<U, N> const& b)
+{
+  std::array<R, M> matrix;
+  for (auto i = 0u; i < M; ++i)
+  {
+    R sum = 0;
+      for (auto j = 0u; j < N; ++j)
+      {
+        sum += a.get(i, j) * b[j];
+      }
+      matrix[i] = sum;
+  }
+  return matrix;
+}
+
 /* Scalar Multiplication a*scalar */
 template <typename T,
           typename U,
@@ -210,7 +233,8 @@ bool operator==(Matrix<T, M, N> const& a, Matrix<U, M, N> const& b)
   {
     for (auto j = 0u; j < N; ++j)
     {
-      if (a.get(i, j) != b.get(i, j)) return false;
+      if (a.get(i, j) != b.get(i, j))
+        return false;
     }
   }
   return true;

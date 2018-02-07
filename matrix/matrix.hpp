@@ -1,9 +1,9 @@
 #ifndef MATRIX_HPP
 #define MATRIX_HPP
 
+#include "../machineEpsilon/maceps.hpp"
 #include "matrix_util.hpp"
 #include "random.hpp"
-#include "../machineEpsilon/maceps.hpp"
 #include <algorithm>
 #include <array>
 #include <cmath>
@@ -123,7 +123,6 @@ public:
   {
     auto I = identity<T, N>();
     auto P = identity<T, N>();
-    P.transpose();
     Matrix<T, N, N> L(0);
     Matrix<T, N, N> U(m);
     std::vector<std::vector<unsigned int>> swaps;
@@ -155,22 +154,26 @@ public:
                                  std::array<T, M> const& c,
                                  std::array<T, M> const& d)
   {
-    std::array<T, M> c_s, d_s, f;
-    c_s[0] = c[0] / b[0];
-    d_s[0] = d[0] / b[0];
-    for (auto i = 1u; i < M; ++i)
+    std::array<double, M> cp, dp, x;
+    cp[0] = c[0] / b[0];
+    dp[0] = d[0] / b[0];
+    for (auto i = 1u; i < N; ++i)
     {
-      auto bmcsta = 1.0 / (b[i] - c_s[i - 1] * a[i]);
-      c_s[i] = c[i] * bmcsta;
-      d_s[i] = (d[i] - d_s[i - 1] * a[i]) * bmcsta;
+      double bottom = (b[i] - (a[i] * cp[i - 1]));
+      cp[i] = c[i] / bottom;
+      dp[i] = (d[i] - (a[i] * dp[i - 1])) / bottom;
     }
 
-    f[M - 1] = d_s[M - 1];
-    for (auto i = M - 2; i-- > 0;)
+    x[N - 1] = dp[N - 1];
+
+    std::cout << "cp:" << cp << std::endl;
+    std::cout << "dp:" << dp << std::endl;
+
+    for (auto i = (int)N - 2; i >= 0; --i)
     {
-      f[i] = d_s[i] - c_s[i] * d[i + 1];
+      x[i] = dp[i] - cp[i] * x[i + 1];
     }
-    return f;
+    return x;
   }
 
   std::array<T, M> triDiagThomas(std::array<T, M> const& d)
@@ -188,16 +191,6 @@ public:
     a[M - 1] = m[M - 1][M - 2];
     b[M - 1] = m[M - 1][M - 1];
     c[M - 1] = 0;
-
-    for (auto e : a)
-      std::cout << e << " ";
-    std::cout << std::endl;
-    for (auto e : b)
-      std::cout << e << " ";
-    std::cout << std::endl;
-    for (auto e : c)
-      std::cout << e << " ";
-    std::cout << std::endl;
 
     return triDiagThomas(a, b, c, d);
   }

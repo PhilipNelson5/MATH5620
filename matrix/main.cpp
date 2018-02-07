@@ -1,5 +1,6 @@
 #include "matrix.hpp"
 #include "matrix_util.hpp"
+#include "vector_util.hpp"
 #include "termColors.hpp"
 #include <iostream>
 #include <string>
@@ -35,6 +36,9 @@ int main()
   Matrix<int, 3, 2> _i_col({{6, 1}, {4, 5}, {2, 7}});
   Matrix<int, 3, 3> _i_swap({{4, -2, 5}, {6, 1, 1}, {2, 8, 7}});
   Matrix<int, 3, 3> j({{6, 1, 1}, {4, -2, 5}, {2, -8, 7}});
+  Matrix<int, 3, 3> k({{6, 1, 1}, {4, -2, 5}, {2, 8, 7}});
+  k.swapRows(0, 1);
+  std::array<double, 4> l = {11, 18, -20, 5};
 
   test(d + e, _de_add, "matrix addition");
   test(d - e, _de_sub, "matrix subtraction");
@@ -47,30 +51,8 @@ int main()
   test(dotProduct(g, h), 116, "dot product");
   test(removeRow(i, 1), _i_row, "remove row");
   test(removeCol(i, 1), _i_col, "remove col");
-
-  Matrix<int, 3, 3> k({{6, 1, 1}, {4, -2, 5}, {2, 8, 7}});
-  k.swapRows(0, 1);
   test(k, _i_swap, "swap row");
   test(j.findLargestInCol(1, 0), 2u, "find largest element in column");
-
-  //  Matrix<double, 4, 4> x({{3, -7, -2, 2}, {-3, 5, 1, 0}, {6, -4, 0, -5}, {-9, 5, -5, 12}});
-  //  //Matrix<double, 4, 4> x({{2, 1, 1, 0}, {4, 3, 3, 1}, {8, 7, 9, 5}, {6, 7, 9, 8}});
-  //  auto [L, U, P] = x.luFactorize();
-  //  std::cout << "A\n" << x << std::endl;
-  //  std::cout << "L\n" << L << std::endl << "U\n" << U << std::endl;
-  //  std::cout << "PA\n" << P*x << std::endl;
-  //  std::cout << "LU\n" << L*U << std::endl;
-
-  // Matrix<double, 4, 4> l(
-      // {{-2, 1, 0, 0}, {1, -2, 1, 0}, {0, 1, -2, 1}, {0, 0, 1, -2}});
-  //auto foo = l.triDiagThomas({0, 1, 1, 1}, {-2, -2, -2, -2}, {1, 1, 1, 0}, {0.04, 0.04, 0.04, 0.04});
-  // auto foo = l.triDiagThomas({0.04, 0.04, 0.04, 0.04});
-
-  Matrix<double, 4, 4> m ({
-      {10., -1., 2., 0.},
-      {-1., 11., -1., 3.},
-      {2., -1., 10., -1.},
-      {0.0, 3., -1., 8.}});
-  std::array<double, 4> bee ({6., 25., -11., 15.});
-  std::cout << m.jacobiIteration(bee, 1000) << std::endl;
+  test(pNorm(l, 1), 54, "one norm");
+  test(infNorm(l), 20, "infinity norm");
 }
