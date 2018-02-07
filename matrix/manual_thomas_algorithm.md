@@ -19,14 +19,13 @@ layout: default
 
 `triDiagThomas` solves a tridiagonal linear system of equations using the Thomas Algorithm.
 
-\\[{\begin{bmatrix}{b_{1}}&{c_{1}}&{}&{}&{0}\\{a_{2}}&{b_{2}}&{c_{2}}&{}&{}\\{}&{a_{3}}&{b_{3}}&\ddots &{}\\{}&{}&\ddots &\ddots &{c_{n-1}}\\{0}&{}&{}&{a_{n}}&{b_{n}}\\\end{bmatrix}}{\begin{bmatrix}{x_{1}}\\{x_{2}}\\{x_{3}}\\\vdots \\{x_{n}}\\\end{bmatrix}}={\begin{bmatrix}{d_{1}}\\{d_{2}}\\{d_{3}}\\\vdots \\{d_{n}}\\\end{bmatrix}} \\]
-
-```
-$ make
-$ ./logistic.out
-```
-
-This will compile and run the driver program.
+\\[\begin{bmatrix}
+ b_0&  c_0&     &  &0 \\ 
+ a_1&  b_1&  c_1&     & \\ 
+    &  a_2&  b_2& \ddots& \\ 
+    &     & \ddots&\ddots&c_{n-2} \\ 
+ 0&  &  & a_{n-1}  &b_{n-2} 
+\end{bmatrix} \\]
 
 ## Input
 
@@ -49,18 +48,34 @@ std::array<T, M> triDiagThomas(std::array<T, M> const& a,
 * `std::array<T, M> c` - an array of type `T` and size `M` (upper diagonal)
 * `std::array<T, M> d` - an array of type `T` and size `M` (d vector)
 
-
-
 ## Output
 
-Logistic returns an `N`, which is the type of the initial parameter, with the solution to the logistic differential equation.
+`triDiagThomas` returns a `std::array<T, M>` with the solution vector `x`
 
 ## Code
 {% highlight c++ %}
-template <typename A, typename B, typename T, typename N>
-inline N logistic(A a, B b, T t, N p0)
+std::array<T, M> triDiagThomas(std::array<T, M> const& a,
+                               std::array<T, M> const& b,
+                               std::array<T, M> const& c,
+                               std::array<T, M> const& d)
 {
-  return a / (((a-p0*b)/p0) * exp(-a * t) + b);
+  std::array<double, M> cp, dp, x;
+  cp[0] = c[0] / b[0];
+  dp[0] = d[0] / b[0];
+  for (auto i = 1u; i < N; ++i)
+  {
+    double bottom = (b[i] - (a[i] * cp[i - 1]));
+    cp[i] = c[i] / bottom;
+    dp[i] = (d[i] - (a[i] * dp[i - 1])) / bottom;
+  }
+
+  x[N - 1] = dp[N - 1];
+
+  for (auto i = (int)N - 2; i >= 0; --i)
+  {
+    x[i] = dp[i] - cp[i] * x[i + 1];
+  }
+  return x;
 }
 {% endhighlight %}
 
