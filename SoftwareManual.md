@@ -10,3 +10,4 @@ title: MATH 5620 Software Manual
 - [Logistic Differential Equation](./logistic/manual)
 - [Second Order Linear DE with Constant Coefficients](./secondOrderLinear/manual)
 - [Finite Difference Coefficients](./finDiffCoeff/manual)
+- [Thomas Algorithm](./matrix/manual_thomas_algorithm)
