@@ -60,7 +60,6 @@ int main()
   auto calcVal =
     solveEllipticODE<N>([](double x) { return std::sin(M_PI * x); }, a, b, ua, ub);
 
-  std::cout << calcVal << std::endl;
 
   std::array<double, N - 1> realVal;
   for (auto i = 1u; i < N; ++i)
@@ -68,7 +67,8 @@ int main()
     realVal[i - 1] = exact(a + i * h);
   }
 
-  std::cout << realVal << std::endl;
+  std::cout << "Calculated Values\n" << calcVal << std::endl;
+  std::cout << "Real Values\n" << realVal << std::endl;
 
   std::cout << "P1 norm:  " << pNorm(realVal - calcVal, 1) << std::endl;
   std::cout << "P2 norm:  " << pNorm(realVal - calcVal, 2) << std::endl;
@@ -80,8 +80,10 @@ int main()
 
 ## Result
 ```
+ Calculated Values
 [     2.7184      2.94    3.1674    3.4028    3.6478    3.9028    4.1674      4.44    4.7184 ]
 
+ Real Values
 [     2.7187    2.9404     3.168    3.4036    3.6487    3.9036     4.168    4.4404    4.7187 ]
 
 P1 norm:  0.0052875
