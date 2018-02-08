@@ -233,7 +233,7 @@ std::ostream& operator<<(std::ostream& o, Matrix<T, M, N> const& m)
     o << "| ";
     for (auto j = 0u; j < N; ++j)
     {
-      o << std::setw(9) << std::setprecision(4) << std::setfill(' ') << m.get(i, j);
+      o << std::setw(10) << std::setprecision(3) << std::setfill(' ') << m.get(i, j);
     }
     o << " |" << std::endl;
   }

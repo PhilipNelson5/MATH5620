@@ -1,11 +1,13 @@
 #include "finDiffCoeff.hpp"
 #include <iostream>
+#include "../matrix/matrix.hpp"
+#include "../matrix/matrix_util.hpp"
+#include "../matrix/vector_util.hpp"
 
 int main()
 {
-  auto coeffs = centralFinDiffCoeff(2, 1e-10, [](double x) { return x; }, 5);
-  for (auto&& c : coeffs)
-    std::cout << c << " ";
-  std::cout << std::endl;
+  auto coeffs = centralFinDiffCoeff<double, 1, 4>();
+
+  std::cout << coeffs << std::endl;
   return EXIT_SUCCESS;
 }

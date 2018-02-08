@@ -40,7 +40,7 @@ vector_add_subtract(+) vector_add_subtract(-)
 {
   o << "[ ";
   for (auto i = 0u; i < M; ++i)
-    o << std::setw(9) << std::setprecision(4) << std::setfill(' ') << a[i];
+    o << std::setw(10) << std::setprecision(3) << std::setfill(' ') << a[i];
   o << " ]" << std::endl;
 
   return o;
