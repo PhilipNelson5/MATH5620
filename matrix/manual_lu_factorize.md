@@ -50,7 +50,7 @@ std::tuple<Matrix<T, N, N>, Matrix<T, N, N>, Matrix<T, N, N>> luFactorize()
     {
       mod[i][j] = -U[i][j] / pivot;
     }
-    L = -(mod - I) + L;
+    L = L + I - mod;
     U = mod * U;
   }
   L = I + L;
