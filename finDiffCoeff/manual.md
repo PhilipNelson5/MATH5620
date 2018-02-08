@@ -55,7 +55,6 @@ auto centralFinDiffCoeff()
     }
   }
 
-
   std::array<T, size> b;
   b.fill(0.0);
   b[ord] = fact(ord);
