@@ -24,7 +24,7 @@ title: MATH 5620 Software Manual
 | Problem      | Software Manual
 | :------------- |:-------------|
 | **Problem 1-2.**  | [Finite Difference Coefficients](./finDiffCoeff/manual)|
-| **Problem 3.**    | [Initialize Elliptic ODE](./finDiffCoeff/manual)|
+| **Problem 3.**    | [Initialize Elliptic ODE](./finiteDiffMethods/manual_init_elliptic_ode)|
 | **Problem 4.**    | [Thomas Algorithm](./matrix/manual_thomas_algorithm)|
 | **Problem 5.**    | [Linear Solver by LU Factorization](./matrix/manual_linear_solve_lu)|
 |                   | • [Lu Factorization](./matrix./manual_lu_factorization)|
