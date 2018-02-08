@@ -7,7 +7,7 @@ layout: default
 {% include mathjax.html %}
 
 <a href="https://philipnelson5.github.io/MATH5620/SoftwareManual"> Table of Contents </a>
-# Logistic Differential Equation
+# Linear Solver by LU Factorization
 
 **Routine Name:** solveLinearSystemLU
 
@@ -26,7 +26,7 @@ layout: default
 
 ## Input
 
-`solveLinearSystemLU(std::array<T, M> b)` is called by a `Matrix<T, M, M> of type `T` and size `MxM` and requires:
+`solveLinearSystemLU(std::array<T, M> b)` is called by a `Matrix<T, M, M>` of type `T` and size `M`x`M` and requires:
 
 * `std::array<T, M> b` - a column vector `b` of type `T` and size `M`
 
