@@ -181,7 +181,7 @@ public:
     return x;
   }
 
-  std::array<T, M> triDiagThomas(std::array<T, M> const& a,
+  static std::array<T, M> triDiagThomas(std::array<T, M> const& a,
                                  std::array<T, M> const& b,
                                  std::array<T, M> const& c,
                                  std::array<T, M> const& d)
