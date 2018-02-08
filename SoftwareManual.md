@@ -28,9 +28,9 @@ title: MATH 5620 Software Manual
 |                   | [Solve Elliptic ODE](./finiteDiffMethods/manual_solve_elliptic_ode)|
 | **Problem 4.**    | [Thomas Algorithm](./matrix/manual_thomas_algorithm)|
 | **Problem 5.**    | [Linear Solver by LU Factorization](./matrix/manual_linear_solve_lu)|
-|                   | • [Lu Factorization](./matrix./manual_lu_factorization)|
-|                   | • [Forward Substitution](./matrix./manual_forward_sub)|
-|                   | • [Back Substitution](./matrix./manual_back_sub)|
+|                   | • [Lu Factorization](./matrix/manual_lu_factorization)|
+|                   | • [Forward Substitution](./matrix/manual_forward_sub)|
+|                   | • [Back Substitution](./matrix/manual_back_sub)|
 | **Problem 6.**    | [Jacobi Iteration](./matrix/manual_jacobi_iteration)|
 | **Problem 8.**    | [Vector P Norm](./matrix/manual_pnorm)|
 |                   | [Vector Infinity Norm](./matrix/manual_infinity_norm)|
