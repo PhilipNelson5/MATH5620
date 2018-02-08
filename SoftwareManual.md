@@ -10,19 +10,19 @@ title: MATH 5620 Software Manual
 ### Homework 1
 *due: 25 January 2017*
 
-| Problem      | Software Manual
-| :------------- |:-------------|
-| **Problem 2-3.**  | [Machine Epsilon](./machineEpsilon/manual) |
-| **Problem 4.**    | [Absolute and Relative Error](./error/manual)  |
-| **Problem 6.**    | [Logistic Differential Equation](./logistic/manual)  |
+| Problem           | Software Manual|
+| :-----------------|:---------------|
+| **Problem 2-3.**  | [Machine Epsilon](./machineEpsilon/manual)|
+| **Problem 4.**    | [Absolute and Relative Error](./error/manual)|
+| **Problem 6.**    | [Logistic Differential Equation](./logistic/manual)|
 | **Problem 7.**    | [Second Order Linear DE with Constant Coefficients](./secondOrderLinear/manual)|
 
 
 ### Homework 2
 *due: 8 February 2017*
 
-| Problem      | Software Manual
-| :------------- |:-------------|
+| Problem           | Software Manual|
+| :-----------------|:---------------|
 | **Problem 1-2.**  | [Finite Difference Coefficients](./finiteDiffMethods/manual_finite_diff_coeff)|
 | **Problem 3.**    | [Initialize Elliptic ODE](./finiteDiffMethods/manual_init_elliptic_ode)|
 | **Problem 4.**    | [Thomas Algorithm](./matrix/manual_thomas_algorithm)|
