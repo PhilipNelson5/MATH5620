@@ -7,7 +7,7 @@ layout: default
 {% include mathjax.html %}
 
 <a href="https://philipnelson5.github.io/MATH5620/SoftwareManual"> Table of Contents </a>
-# Logistic Differential Equation
+# Infinity Norm
 
 **Routine Name:** infNorm
 
