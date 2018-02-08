@@ -34,7 +34,7 @@ title: MATH 5620 Software Manual
 | **Problem 8.**    | [Solve Elliptic ODE](./finiteDiffMethods/manual_solve_elliptic_ode)|
 |                   | [Vector P Norm](./matrix/manual_pnorm)|
 |                   | [Vector Infinity Norm](./matrix/manual_infinity_norm)|
-| **Problem 9.**    | [Approximate Elliptic ODE with K](./finDiffCoeff/manual_solve_elliptic_ode_k)|
+| **Problem 9.**    | [Approximate Elliptic ODE with K](./finiteDiffMethods/manual_solve_elliptic_ode_k)|
 
 -----
 
