@@ -6,8 +6,10 @@
 
 int main()
 {
-  auto coeffs = centralFinDiffCoeff<double, 1, 4>();
+  auto coeffs = centralFinDiffCoeff<double, 2, 4>();
 
+  std::cout << "coefficients of a second order derivative with 4th accuracy\n";
   std::cout << coeffs << std::endl;
+
   return EXIT_SUCCESS;
 }

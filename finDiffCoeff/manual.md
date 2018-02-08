@@ -19,12 +19,6 @@ layout: default
 
 `centralFinDiffCoeff` returns a vector of the coefficients for finite difference approximations of an arbitrary order of accuracy for a given derivative. This routine uses binomial coefficients to calculate the coefficients with the formula below:
 
-\\[ \delta_{h}^{n}f(x)=\sum _{i=0}^{n}(-1)^{i}{\binom{n}{i}}f\left(x+\left({\frac{n}{2}}-i\right)h\right) \\]
-
-\\[ \sum _{i=0}^{n}(-1)^{i}{\binom{n}{i}}f\left(x+\left({\frac{n}{2}}-i\right)h\right) \\]
-
-\\[ \delta_{h}^{n}(x)=\sum _{i=0}^{n}(-1)^{i}{\binom{n}{i}}f\left(x+\left({\frac{n}{2}}-i\right)h\right) \\]
-
 ```
 $ make
 $ ./finDiffCoeff.out
@@ -34,12 +28,11 @@ This will compile and run the driver program.
 
 ## Input
 
-`std::vector<T> centralFinDiffCoeff(unsigned int const& n, unsigned int const& h, F f, T x)`
+`centralFinDiffCoeff()` takes no parameters, however it requires the type, order and accuracy as template parameters.
 
-* `unsigned int n` - order of the derivative
-* `unsigned int h` - the value of \\(h\\)
-* `F f` - the function \\(f\\), given as a lambda
-* `T x` - the point where \\(f\\) is evaluated at
+* `T` - the type you want the coefficients in
+* `ord` - the order of the derivative
+* `acc` - the accuracy of the approximation
 
 ## Output
 
@@ -47,15 +40,34 @@ This will compile and run the driver program.
 
 ## Code
 {% highlight c++ %}
-template <typename T, typename F>
-std::vector<T> centralFinDiffCoeff(unsigned int const& n, unsigned int const& h, F f, T x)
+template <typename T, std::size_t ord, std::size_t acc>
+auto centralFinDiffCoeff()
 {
-  std::vector<T> coeffs;
-  for (auto i = 0u; i <= n; ++i)
+  constexpr int size = 2.0 * std::floor((ord + 1.0) / 2.0) - 1.0 + acc;
+  constexpr int P = (size - 1.0) / 2.0;
+  std::cout << "P: " << P << "\nsize: " << size << std::endl;
+
+  Matrix<double, size, size> mat;
+  for (auto i = 0; i < size; ++i)
   {
-    coeffs.push_back(pow(-1, i) * binCoeff(n, i) * f(x + (n / 2.0 - i) * h));
+    for (auto j = 0; j < size ; ++j)
+    {
+      std::cout << "(" << j << "-" << P << ")^" << i << "=" << std::pow(-P+j, i) << std::endl;
+      mat[i][j] = std::pow(-P+j, i);
+    }
+    std::cout << std::endl;
   }
-  return coeffs;
+
+  std::cout << mat << std::endl;
+
+  std::array<T, size> b;
+  b.fill(0.0);
+  b[ord] = fact(ord);
+  std::cout << "ord: " << ord << std::endl;
+  std::cout << "fact: " << fact(ord) << std::endl;
+  std::cout <<"b\n" << b << std::endl;
+
+  return mat.solveLinearSystemLU(b);
 }
 {% endhighlight %}
 
@@ -63,17 +75,21 @@ std::vector<T> centralFinDiffCoeff(unsigned int const& n, unsigned int const& h,
 {% highlight c++ %}
 int main()
 {
-  auto coeffs = centralFinDiffCoeff(2, 1e-10, [](double x) { return x; }, 5);
-  for (auto&& c : coeffs)
-    std::cout << c << " ";
-  std::cout << std::endl;
+  auto coeffs = centralFinDiffCoeff<double, 1, 4>();
+
+  std::cout << "coefficients of a second order derivative with 4th accuracy\n\n";
+  std::cout << coeffs << std::endl;
+
   return EXIT_SUCCESS;
 }
 {% endhighlight %}
 
 ## Result
 ```
-5 -10 5
+coefficients of a second order derivative with 4th accuracy
+
+[    -0.0833      1.33      -2.5      1.33   -0.0833 ]
+
 ```
 
 **Last Modification date:** 11 January 2018
