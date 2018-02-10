@@ -77,6 +77,5 @@ int main()
 
   Matrix<int, 3, 3> A({{6, 1, 1}, {4, -2, 5}, {2, 8, 7}});
   std::cout << " A\n" << A << std::endl;
-  std::cout << "One Norm: " << oneNorm(A) << std::endl;
-  std::cout << infNorm(A) << std::endl;
+  std::cout << "Infinity Norm: " << infNorm(A) << std::endl;
 }
