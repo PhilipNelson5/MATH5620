@@ -40,6 +40,7 @@ int main()
   k.swapRows(0, 1);
   std::array<double, 4> l = {11, 18, -20, 5};
 
+  std::cout << BLUE << "[      TESTS BEGINNING     ]\n\n" << RESET;
   test(d + e, _de_add, "matrix addition");
   test(d - e, _de_sub, "matrix subtraction");
   test(b * c, _bc, "matrix multiplication");
@@ -53,20 +54,29 @@ int main()
   test(removeCol(i, 1), _i_col, "remove col");
   test(k, _i_swap, "swap row");
   test(j.findLargestInCol(1, 0), 2u, "find largest element in column");
-  test(pNorm(l, 1), 54, "one norm");
-  test(infNorm(l), 20, "infinity norm");
+  test(pNorm(l, 1), 54, "vector one norm");
+  test(infNorm(l), 20, "vector infinity norm");
+  test(oneNorm(i), 13, "matrix one norm");
+  test(infNorm(i), 17, "matrix infinity norm");
+
+  std::cout << BLUE << "[      TESTS COMPLETE     ]\n\n" << RESET;
 
   // Matrix<double, 4, 4> U({{3, 5, -6, 4}, {0, 4, -6, 9}, {0, 0, 3, 11}, {0, 0, 0, -9}});
   // std::array<double, 4> x{4, 6, -7, 9};
   // auto B = U * x;
-//
+  //
   // std::cout << " U\n" << U << std::endl;
   // std::cout << " b\n" << B << std::endl;
   // std::cout << " Real x\n" << x << std::endl;
   // std::cout << " Calculated x\n";
   // std::cout << U.backSub(B) << std::endl;
+  //
+  // std::cout << " v" << l << std::endl;
+  // std::cout << "1 Norm: " << pNorm(l, 1) << std::endl;
+  // std::cout << "2 Norm: " << pNorm(l, 2) << std::endl;
 
-  std::cout << " v" << l << std::endl;
-  std::cout << "1 Norm: " << pNorm(l, 1) << std::endl;
-  std::cout << "2 Norm: " << pNorm(l, 2) << std::endl;
+  Matrix<int, 3, 3> A({{6, 1, 1}, {4, -2, 5}, {2, 8, 7}});
+  std::cout << " A\n" << A << std::endl;
+  std::cout << "One Norm: " << oneNorm(A) << std::endl;
+  std::cout << infNorm(A) << std::endl;
 }

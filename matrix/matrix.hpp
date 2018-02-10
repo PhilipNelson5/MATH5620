@@ -89,6 +89,16 @@ public:
 
   std::array<T, N>& operator[](int x) { return m[x]; }
 
+  auto begin(unsigned int n)
+  {
+    return m[n].begin();
+  }
+
+  auto end(unsigned int n)
+  {
+    return m[n].end();
+  }
+
   /* Swap rows r1 and r2 */
   void swapRows(unsigned int const& r1, unsigned int const& r2)
   {

@@ -1,8 +1,10 @@
 #ifndef MATRIX_UTIL_HPP
 #define MATRIX_UTIL_HPP
 
+#include <algorithm>
 #include <iomanip>
 #include <iostream>
+#include <numeric>
 #include <tuple>
 
 template <typename T, std::size_t M, std::size_t N>
@@ -240,5 +242,31 @@ std::ostream& operator<<(std::ostream& o, Matrix<T, M, N> const& m)
   return o;
 }
 
+template <typename T, std::size_t M, std::size_t N>
+T oneNorm(Matrix<T, M, N>& m)
+{
+  std::array<T, N> colSum;
+  for (auto j = 0u; j < M; ++j)
+  {
+    colSum[j] = 0;
+    for (auto i = 0u; i < N; ++i)
+    {
+      colSum[j] += std::abs(m[i][j]);
+    }
+  }
+
+  return *std::max_element(colSum.begin(), colSum.end());
+}
+
+template <typename T, std::size_t M, std::size_t N>
+T infNorm(Matrix<T, M, N>& m)
+{
+  std::array<T, N> rowSum;
+  for (auto i = 0u; i < N; ++i)
+    rowSum[i] = std::accumulate(
+      m.begin(i), m.end(i), 0, [](T sum, T elem) { return sum + std::abs(elem); });
+
+  return *std::max_element(rowSum.begin(), rowSum.end());
+}
 
 #endif
