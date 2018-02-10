@@ -48,11 +48,13 @@ title: MATH 5620 Software Manual
 | **Problem 4.**    | Inverse Power Method for Solving 2nd Order FD Elliptic ODE|
 | **Problem 5.**    | Laplace Equation 5-point Stencil|
 | **Problem 6.**    | Laplace Equation 9-point Stencil|
-<!-- | **Problem 2.**    | [Power Method Iteration for Largest Eigenvalue](./matrix/manual_matrix_one_norm)| -->
-<!-- | **Problem 3.**    | [Power Method Iteration for Solving 2nd Order FD Elliptic ODE](./matrix/manual_matrix_one_norm)| -->
-<!-- | **Problem 4.**    | [Inverse Power Method for Solving 2nd Order FD Elliptic ODE](./matrix/manual_matrix_one_norm)| -->
-<!-- | **Problem 5.**    | [Laplace Equation 5-point Stencil](./matrix/manual_matrix_one_norm)| -->
-<!-- | **Problem 6.**    | [Laplace Equation 9-point Stencil](./matrix/manual_matrix_one_norm)| -->
+{% comment %}
+| **Problem 2.**    | [Power Method Iteration for Largest Eigenvalue](./matrix/manual_matrix_one_norm)|
+| **Problem 3.**    | [Power Method Iteration for Solving 2nd Order FD Elliptic ODE](./matrix/manual_matrix_one_norm)|
+| **Problem 4.**    | [Inverse Power Method for Solving 2nd Order FD Elliptic ODE](./matrix/manual_matrix_one_norm)|
+| **Problem 5.**    | [Laplace Equation 5-point Stencil](./matrix/manual_matrix_one_norm)|
+| **Problem 6.**    | [Laplace Equation 9-point Stencil](./matrix/manual_matrix_one_norm)|
+{% endcomment %}
 
 -----
 
