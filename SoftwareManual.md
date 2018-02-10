@@ -79,6 +79,6 @@ title: MATH 5620 Software Manual
   - [Back Substitution](./matrix./manual_back_sub)
 
 ### Finite Difference Methods
-- [Finite Difference Coefficients](./finDiffCoeff/manual)
+- [Finite Difference Coefficients](./finiteDiffMethods/manual_finite_diff_coeff)
 - [Initialize Elliptic ODE](./finiteDiffMethods/manual_init_elliptic_ode)
 - [Solve Elliptic ODE](./finiteDiffMethods/manual_solve_elliptic_ode)
