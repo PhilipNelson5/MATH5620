@@ -1,11 +1,23 @@
 #ifndef MATRIX_UTIL_HPP
 #define MATRIX_UTIL_HPP
 
+#include "../machineEpsilon/maceps.hpp"
+#include "random.hpp"
+#include "vector_util.hpp"
 #include <algorithm>
 #include <iomanip>
 #include <iostream>
 #include <numeric>
 #include <tuple>
+
+template <typename T, std::size_t M>
+bool allclose(std::array<T, M> a, std::array<T, M> b, double tol)
+{
+  for (auto i = 0u; i < M; ++i)
+    if (std::abs(a[i] - b[i]) > tol)
+      return false;
+  return true;
+}
 
 template <typename T, std::size_t M, std::size_t N>
 class Matrix;
@@ -160,7 +172,7 @@ template <typename T,
           std::size_t M,
           std::size_t N,
           typename R = decltype(T() * U())>
-Matrix<R, M, N> operator*(Matrix<T, M, N> const& a, U scalar)
+Matrix<R, M, N> operator*(Matrix<T, M, N> const& a, U const& scalar)
 {
   R matrix[M][N];
   for (auto i = 0u; i < M; ++i)
@@ -179,7 +191,7 @@ template <typename T,
           std::size_t M,
           std::size_t N,
           typename R = decltype(T() * U())>
-Matrix<R, M, N> operator*(U scalar, Matrix<T, M, N> const& a)
+Matrix<R, M, N> operator*(U const& scalar, Matrix<T, M, N> const& a)
 {
   R matrix[M][N];
   for (auto i = 0u; i < M; ++i)
@@ -187,6 +199,25 @@ Matrix<R, M, N> operator*(U scalar, Matrix<T, M, N> const& a)
     for (auto j = 0u; j < N; ++j)
     {
       matrix[i][j] = (a.get(i, j) * scalar);
+    }
+  }
+  return matrix;
+}
+
+/* Scalar Division a/scalar */
+template <typename T,
+          typename U,
+          std::size_t M,
+          std::size_t N,
+          typename R = decltype(T() / U())>
+Matrix<R, M, N> operator/(Matrix<T, M, N> const& a, U const& scalar)
+{
+  R matrix[M][N];
+  for (auto i = 0u; i < M; ++i)
+  {
+    for (auto j = 0u; j < N; ++j)
+    {
+      matrix[i][j] = (a.get(i, j) / scalar);
     }
   }
   return matrix;
@@ -269,4 +300,20 @@ T infNorm(Matrix<T, M, N>& m)
   return *std::max_element(rowSum.begin(), rowSum.end());
 }
 
+template <typename T, std::size_t N>
+std::array<T, N> powerIteration(Matrix<T, N, N> const& A, unsigned int const& MAX)
+{
+  std::array<T, N> b_k;
+
+  for (auto&& e : b_k)
+    e = randDouble(0.0, 10.0);
+
+  for (auto i = 0u; i < MAX; ++i)
+  {
+    auto Ab_k = A * b_k;
+    auto norm = pNorm(Ab_k, 2);
+    b_k = Ab_k / norm;
+  }
+  return b_k;
+}
 #endif

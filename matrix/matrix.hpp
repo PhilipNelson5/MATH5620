@@ -1,20 +1,17 @@
 #ifndef MATRIX_HPP
 #define MATRIX_HPP
 
-#include "../machineEpsilon/maceps.hpp"
 #include "matrix_util.hpp"
 #include "random.hpp"
 #include <algorithm>
 #include <array>
 #include <cmath>
+#include <functional>
 #include <iostream>
 #include <vector>
 
 template <typename T, std::size_t M, std::size_t N>
 class Matrix;
-
-// template <typename T>
-// using filler = std::function<T(unsigned int const&, unsigned int const&)>;
 
 /* returns an NxN identity matrix */
 template <typename T, std::size_t N>
@@ -32,15 +29,24 @@ template <typename T, std::size_t M, std::size_t N>
 class Matrix
 {
 public:
+  using filler = std::function<T(unsigned int const&, unsigned int const&)>;
   /* Default Creation */
   Matrix() {}
+
+  /* Filled Creation */
+  Matrix(filler f)
+  {
+    for (auto i = 0u; i < M; ++i)
+      for (auto j = 0u; j < N; ++j)
+        m[i][j] = f(i, j);
+  }
 
   /* Random Creation */
   Matrix(int start, int end)
   {
     for (auto i = 0u; i < M; ++i)
       for (auto j = 0u; j < N; ++j)
-        m[i][j] = rand(start, end);
+        m[i][j] = randInt(start, end);
   }
 
   /* Fill With n */
@@ -89,21 +95,12 @@ public:
 
   std::array<T, N>& operator[](int x) { return m[x]; }
 
-  auto begin(unsigned int n)
-  {
-    return m[n].begin();
-  }
+  auto begin(unsigned int n) { return m[n].begin(); }
 
-  auto end(unsigned int n)
-  {
-    return m[n].end();
-  }
+  auto end(unsigned int n) { return m[n].end(); }
 
   /* Swap rows r1 and r2 */
-  void swapRows(unsigned int const& r1, unsigned int const& r2)
-  {
-    std::swap(m[r1], m[r2]);
-  }
+  void swapRows(unsigned int const& r1, unsigned int const& r2) { std::swap(m[r1], m[r2]); }
 
   /* return the absolute largest element of a col starting at a given row */
   unsigned int findLargestInCol(unsigned int const& col, unsigned int const& row = 0)
@@ -192,9 +189,9 @@ public:
   }
 
   static std::array<T, M> triDiagThomas(std::array<T, M> const& a,
-                                 std::array<T, M> const& b,
-                                 std::array<T, M> const& c,
-                                 std::array<T, M> const& d)
+                                        std::array<T, M> const& b,
+                                        std::array<T, M> const& c,
+                                        std::array<T, M> const& d)
   {
     std::array<double, M> cp, dp, x;
     cp[0] = c[0] / b[0];
@@ -232,14 +229,6 @@ public:
     c[M - 1] = 0;
 
     return triDiagThomas(a, b, c, d);
-  }
-
-  bool allclose(std::array<T, M> a, std::array<T, M> b, double tol)
-  {
-    for (auto i = 0u; i < M; ++i)
-      if (std::abs(a[i] - b[i]) > tol)
-        return false;
-    return true;
   }
 
   std::array<T, M> jacobiIteration(std::array<T, M> const& b, unsigned int const& MAX = 1000)
