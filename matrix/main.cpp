@@ -68,7 +68,7 @@ void runTests()
 
 int main()
 {
-  runTests();
+  // runTests();
 
   // Matrix<double, 4, 4> U({{3, 5, -6, 4}, {0, 4, -6, 9}, {0, 0, 3, 11}, {0, 0, 0, -9}});
   // std::array<double, 4> x{4, 6, -7, 9};
@@ -84,9 +84,9 @@ int main()
   // std::cout << "1 Norm: " << pNorm(l, 1) << std::endl;
   // std::cout << "2 Norm: " << pNorm(l, 2) << std::endl;
 
-  Matrix<double, 4, 4> A({{-2, 1, 0, 0}, {1, -2, 1, 0}, {0, 1, -2, 1, 0}, {0, 0, 1, -2}});
-  // Matrix<double, 4, 4> A(
-    // [](unsigned int const& i, unsigned int const& j) { return 1.0 / (i + j + 1.0); });
+  // Matrix<double, 4, 4> A({{-2, 1, 0, 0}, {1, -2, 1, 0}, {0, 1, -2, 1, 0}, {0, 0, 1, -2}});
+  Matrix<double, 5, 5> A(
+    [](unsigned int const& i, unsigned int const& j) { return 1.0 / (i + j + 1.0); });
   auto eigvec = powerIteration(A, 1000u);
   auto eigval = pNorm(A * eigvec, 2);
   std::cout << "A\n" << A << std::endl;
