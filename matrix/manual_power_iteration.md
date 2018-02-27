@@ -57,6 +57,7 @@ int main()
 {
   Matrix<double, 5, 5> A( // 5x5 Hilbert matrix
     [](unsigned int const& i, unsigned int const& j) { return 1.0 / (i + j + 1.0); });
+  auto eigvec = powerIteration(A, 1000u);
   auto eigval = pNorm(A * eigvec, 2);
   std::cout << "A\n" << A << std::endl;
   std::cout << "v\n" << eigvec << std::endl;
