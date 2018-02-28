@@ -9,6 +9,7 @@
 #include <iostream>
 #include <numeric>
 #include <tuple>
+#include <cmath>
 
 struct Point
 {
@@ -342,7 +343,7 @@ T powerIteration(Matrix<T, N, N> const& A, unsigned int const& MAX)
 }
 
 template <typename T, std::size_t N>
-T inversePowerIteration(Matrix<T, N, N> & A, unsigned int const& MAX)
+T inversePowerIteration(Matrix<T, N, N>& A, unsigned int const& MAX)
 {
   std::array<T, N> v;
   for (auto&& e : v)
@@ -352,10 +353,10 @@ T inversePowerIteration(Matrix<T, N, N> & A, unsigned int const& MAX)
   for (auto i = 0u; i < MAX; ++i)
   {
     auto w = A.solveLinearSystemLU(v);
-    v = w / pNorm(w,2);
-    lamda = v*(A*v);
+    v = w / pNorm(w, 2);
+    lamda = v * (A * v);
   }
-    return lamda;
+  return lamda;
 }
 
 template <typename T, std::size_t N>
@@ -413,22 +414,23 @@ Matrix<T, N * N, N * N> ninePointStencil()
 }
 
 template <typename T, std::size_t N>
-Matrix<Point, N, N> generateMesh(int alpha, T a, T b)
+Matrix<T, N - 2, N - 2> generateMesh(T a, T b)
 {
-  auto h = (b - a) / alpha;
+  auto h = (b - a) / (N - 1);
 
-  return Matrix<Point, N, N>([&](int i, int j) { return Point(a + i * h, b + j * h); });
+  return Matrix<T, N - 2, N - 2>(
+    [&](int i, int j) { return (a + (i + 1) * h) * (a + (j + 1) * h); });
 }
 
 template <typename T, typename F, std::size_t N>
-std::array<T, N * N> initMeshB(Matrix<Point, N, N> const& mesh, F f)
+std::array<T, N * N> initMeshB(Matrix<T, N, N>& mesh, F f)
 {
   std::array<T, N * N> b;
   for (auto i = 0u; i < N; ++i)
   {
     for (auto j = 0u; j < N; ++j)
     {
-      b[i * N + j] = f(mesh[i][j].x * mesh[i][j].y);
+      b[i * N + j] = f(mesh[i][j]);
     }
   }
   return b;
@@ -440,7 +442,13 @@ double conditionNumber(Matrix<T, N, M> m)
   auto max = powerIteration(m, 1000u);
   auto min = inversePowerIteration(m, 1000u);
 
-  return max/min;
+  return max / min;
+}
+
+template <typename T, std::size_t N>
+Matrix<T, int(std::sqrt(N)), int(std::sqrt(N))> arrayToMat(std::array<T, N> a)
+{
+  return Matrix<T, int(std::sqrt(N)), int(std::sqrt(N))>([&](int i, int j){return a[i * int(std::sqrt(N)) + j];});
 }
 
 #endif

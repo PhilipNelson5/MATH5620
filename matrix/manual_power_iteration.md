@@ -29,7 +29,7 @@ layout: default
 
 ## Output
 
-~he largest Eigenvalue
+The largest Eigenvalue
 
 ## Code
 {% highlight c++ %}

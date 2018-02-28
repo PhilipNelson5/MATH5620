@@ -3,6 +3,7 @@
 #include "matrix_util.hpp"
 #include "termColors.hpp"
 #include "vector_util.hpp"
+#include <cmath>
 #include <iostream>
 #include <string>
 
@@ -101,21 +102,15 @@ int main()
   // std::cout << fivePointStencil<double, 3>() << std::endl;
   // std::cout << ninePointStencil<double, 3>() << std::endl;
 
-  // std::cout << "A\n" << SecOrdFinDifMethEllipticMat<double, 5>() << std::endl << std::endl;
-  std::cout << "3x3" << std::endl;
-  std::cout << conditionNumber(SecOrdFinDifMethEllipticMat<double, 3>()) << std::endl << std::endl;
-  std::cout << "5x5" << std::endl;
-  std::cout << conditionNumber(SecOrdFinDifMethEllipticMat<double, 5>()) << std::endl << std::endl;
-  std::cout << "10x10" << std::endl;
-  std::cout << conditionNumber(SecOrdFinDifMethEllipticMat<double, 10>()) << std::endl << std::endl;
-  std::cout << "15x15" << std::endl;
-  std::cout << conditionNumber(SecOrdFinDifMethEllipticMat<double, 15>()) << std::endl << std::endl;
-  std::cout << "25x25" << std::endl;
-  std::cout << conditionNumber(SecOrdFinDifMethEllipticMat<double, 25>()) << std::endl << std::endl;
-  std::cout << "75x75" << std::endl;
-  std::cout << conditionNumber(SecOrdFinDifMethEllipticMat<double, 75>()) << std::endl << std::endl;
-  std::cout << "100x100" << std::endl;
-  std::cout << conditionNumber(SecOrdFinDifMethEllipticMat<double, 100>()) << std::endl << std::endl;
-  // std::cout << "1000x10000" << std::endl;
-  // std::cout << conditionNumber(SecOrdFinDifMethEllipticMat<double, 1000>()) << std::endl;
+  const constexpr std::size_t s = 5;
+  auto mesh = generateMesh<double, s>(0, 1);
+  auto b = initMeshB(mesh, sin);
+  auto stencil = ninePointStencil<double, s-2>();
+  auto res = stencil.solveLinearSystemLU(b);
+  auto finalMat = arrayToMat(res);
+  std::cout << "mesh\n" << mesh << std::endl << std::endl;
+  std::cout << "stencil\n" << stencil << std::endl << std::endl;
+  std::cout << "b\n" << b << std::endl << std::endl;
+  std::cout << "result\n" << res << std::endl;
+  std::cout << "final\n" << finalMat << std::endl;
 }
