@@ -15,7 +15,7 @@ class Matrix;
 
 /* returns an NxN identity matrix */
 template <typename T, std::size_t N>
-Matrix<T, N, N> identity()
+static Matrix<T, N, N> identity()
 {
   Matrix<T, N, N> matrix(0);
   for (auto i = 0u; i < N; ++i)
@@ -108,8 +108,7 @@ public:
     T max = row;
     for (auto i = row + 1; i < M; ++i)
     {
-      if (std::abs(m[i][col]) > std::abs(m[max][col]))
-        max = i;
+      if (std::abs(m[i][col]) > std::abs(m[max][col])) max = i;
     }
     return max;
   }
@@ -247,20 +246,35 @@ public:
         T sum = 0;
         for (auto j = 0u; j < N; ++j)
         {
-          if (j == i)
-            continue;
+          if (j == i) continue;
           sum += m[i][j] * x[j];
         }
         x_n[i] = (b[i] - sum) / m[i][i];
       }
 
-      if (allclose(x, x_n, maceps<T>().maceps))
-        break;
+      if (allclose(x, x_n, maceps<T>().maceps)) break;
 
       x = x_n;
     }
 
     return x;
+  }
+
+  Matrix<T, N * N, N * N> blockToMatrix(Matrix<Matrix<T, N, N>, N*N, N*N> block)
+  {
+    Matrix<T, N * N, N * N> res([&](int i, int j) {
+      return block[i / N][j / N][i - (N * (i / N))][j - (N * (j / N))];
+    });
+
+    return res;
+
+    // for (auto i = 0u; i < N*N; ++i)
+    // {
+    //   for (auto j = 0u; j < N*N; ++j)
+    //   {
+    //     res
+    //   }
+    // }
   }
 
 private:

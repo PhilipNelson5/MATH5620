@@ -45,4 +45,16 @@ auto centralFinDiffCoeff()
 
   return mat.solveLinearSystemLU(b);
 }
+
+template <typename T, std::size_t N>
+Matrix<T, N, N> SecOrdFinDifMethEllipticMat()
+{
+  auto coeff = centralFinDiffCoeff<double, 2, 2>();
+  return Matrix<T, N, N> ([&](int i, int j){
+      if (i == j) return coeff[1];
+      if (i+1 == j) return coeff[0];
+      if (i == j+1) return coeff[2];
+      return 0.0;
+    });
+}
 #endif

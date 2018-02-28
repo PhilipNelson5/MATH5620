@@ -1,3 +1,4 @@
+#include "../finiteDiffMethods/finDiffCoeff.hpp"
 #include "matrix.hpp"
 #include "matrix_util.hpp"
 #include "termColors.hpp"
@@ -38,9 +39,9 @@ void runTests()
   Matrix<int, 3, 3> j({{6, 1, 1}, {4, -2, 5}, {2, -8, 7}});
   Matrix<int, 3, 3> k({{6, 1, 1}, {4, -2, 5}, {2, 8, 7}});
   k.swapRows(0, 1);
-  std::array<double, 4> l = {11, 18, -20, 5};
+  std::array<double, 4> l = {{11, 18, -20, 5}};
   Matrix<double, 4, 4> m({{-2, 1, 0, 0}, {1, -2, 1, 0}, {0, 1, -2, 1}, {0, 0, 1, -2}});
-  std::array<double, 4> n = {4, 7, 2, 5};
+  std::array<double, 4> n = {{4, 7, 2, 5}};
   auto o = m * n;
 
   std::cout << BLUE << "[      TESTS BEGINNING     ]\n\n" << RESET;
@@ -63,7 +64,7 @@ void runTests()
   test(infNorm(i), 17, "matrix infinity norm");
   test(pNorm(m.jacobiIteration(o) - n, 2) < 1e-10, true, "jacobi iteration");
 
-  std::cout << BLUE << "[      TESTS COMPLETE     ]\n\n" << RESET;
+  std::cout << BLUE << "\n[      TESTS COMPLETE     ]\n\n" << RESET;
 }
 
 int main()
@@ -85,13 +86,36 @@ int main()
   // std::cout << "2 Norm: " << pNorm(l, 2) << std::endl;
 
   // Matrix<double, 4, 4> A({{-2, 1, 0, 0}, {1, -2, 1, 0}, {0, 1, -2, 1, 0}, {0, 0, 1, -2}});
-  Matrix<double, 5, 5> A(
-    [](unsigned int const& i, unsigned int const& j) { return 1.0 / (i + j + 1.0); });
-  auto eigvec = powerIteration(A, 1000u);
-  auto eigval = pNorm(A * eigvec, 2);
-  std::cout << "A\n" << A << std::endl;
-  std::cout << "v\n" << eigvec << std::endl;
-  std::cout << "lambda\n" << eigval << std::endl << std::endl;
-  std::cout << "A*v\n" << A * eigvec << std::endl;
-  std::cout << "lambda*v\n" << eigval * eigvec << std::endl;
+  // Matrix<double, 2, 2> A({{6, -1}, {2, 3}});
+  // Matrix<double, 5, 5> A(
+  // [](unsigned int const& i, unsigned int const& j) { return 1.0 / (i + j + 1.0); });
+
+  // auto eigval1 = inversePowerIteration(A, 1000u);
+  // std::cout << "A\n" << A << std::endl;
+  // std::cout << "Smallest Eigenvalue\n" << eigval1<< std::endl;
+
+  // auto eigval = powerIteration(A, 1000u);
+  // std::cout << "A\n" << A << std::endl;
+  // std::cout << "Largest Eigenvalue\n" << eigval << std::endl;
+
+  // std::cout << fivePointStencil<double, 3>() << std::endl;
+  // std::cout << ninePointStencil<double, 3>() << std::endl;
+
+  // std::cout << "A\n" << SecOrdFinDifMethEllipticMat<double, 5>() << std::endl << std::endl;
+  std::cout << "3x3" << std::endl;
+  std::cout << conditionNumber(SecOrdFinDifMethEllipticMat<double, 3>()) << std::endl << std::endl;
+  std::cout << "5x5" << std::endl;
+  std::cout << conditionNumber(SecOrdFinDifMethEllipticMat<double, 5>()) << std::endl << std::endl;
+  std::cout << "10x10" << std::endl;
+  std::cout << conditionNumber(SecOrdFinDifMethEllipticMat<double, 10>()) << std::endl << std::endl;
+  std::cout << "15x15" << std::endl;
+  std::cout << conditionNumber(SecOrdFinDifMethEllipticMat<double, 15>()) << std::endl << std::endl;
+  std::cout << "25x25" << std::endl;
+  std::cout << conditionNumber(SecOrdFinDifMethEllipticMat<double, 25>()) << std::endl << std::endl;
+  std::cout << "75x75" << std::endl;
+  std::cout << conditionNumber(SecOrdFinDifMethEllipticMat<double, 75>()) << std::endl << std::endl;
+  std::cout << "100x100" << std::endl;
+  std::cout << conditionNumber(SecOrdFinDifMethEllipticMat<double, 100>()) << std::endl << std::endl;
+  // std::cout << "1000x10000" << std::endl;
+  // std::cout << conditionNumber(SecOrdFinDifMethEllipticMat<double, 1000>()) << std::endl;
 }

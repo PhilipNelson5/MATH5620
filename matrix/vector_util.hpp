@@ -25,6 +25,15 @@ double infNorm(std::array<T, N> v)
   return max;
 }
 
+template <typename T, typename U, std::size_t N>
+bool operator == (std::array<T, N> a, std::array<U, N> b)
+{
+  for (auto i = 0u; i < N; ++i)
+    if (a[i] != b[i])
+      return false;
+  return true;
+}
+
 #define vector_add_subtract(op)                                                               \
   template <typename T, typename U, typename R = decltype(T() op U()), std::size_t N>         \
   std::array<R, N> operator op(std::array<T, N> const& a, std::array<U, N> const& b)          \
@@ -37,6 +46,18 @@ double infNorm(std::array<T, N> v)
 
 vector_add_subtract(+) vector_add_subtract(-)
 
+#define vector_add_subtract_scalar(op)                                                        \
+  template <typename T, typename U, typename R = decltype(T() op U()), std::size_t N>         \
+  R operator op(std::array<T, N> const& a, U const& b)                                        \
+  {                                                                                           \
+    R result = 0;                                                                             \
+    for (auto i = 0u; i < N; ++i)                                                             \
+      result += a[i] op b;                                                                    \
+    return result;                                                                            \
+  }
+
+  vector_add_subtract_scalar(+) vector_add_subtract_scalar(-)
+
 #define vector_multiply_divide_scalar(op)                                                     \
   template <typename T, typename U, typename R = decltype(T() op U()), std::size_t N>         \
   std::array<R, N> operator op(std::array<T, N> const& a, U const& b)                         \
@@ -47,7 +68,7 @@ vector_add_subtract(+) vector_add_subtract(-)
     return result;                                                                            \
   }
 
-  vector_multiply_divide_scalar(*) vector_multiply_divide_scalar(/)
+    vector_multiply_divide_scalar(*) vector_multiply_divide_scalar(/)
 
 #define scalar_multiply_divide_vector(op)                                                     \
   template <typename T, typename U, typename R = decltype(T() op U()), std::size_t N>         \
@@ -59,10 +80,19 @@ vector_add_subtract(+) vector_add_subtract(-)
     return result;                                                                            \
   }
 
-  scalar_multiply_divide_vector(*) scalar_multiply_divide_vector(/)
+      scalar_multiply_divide_vector(*) scalar_multiply_divide_vector(/)
 
-    template <typename T, std::size_t M>
-    std::ostream& operator<<(std::ostream& o, std::array<T, M> const& a)
+        template <typename T, typename U, typename R = decltype(T() * U()), std::size_t N>
+        R operator*(std::array<T, N> a, std::array<U, N> b)
+{
+  R result = 0;
+  for (auto i = 0u; i < N; ++i)
+    result += a[i] * b[i];
+  return result;
+}
+
+template <typename T, std::size_t M>
+std::ostream& operator<<(std::ostream& o, std::array<T, M> const& a)
 {
   o << "[ ";
   for (auto i = 0u; i < M; ++i)

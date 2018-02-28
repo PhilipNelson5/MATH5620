@@ -10,12 +10,18 @@
 #include <numeric>
 #include <tuple>
 
+struct Point
+{
+  Point(double x, double y) : x(x), y(y) {}
+  double x;
+  double y;
+};
+
 template <typename T, std::size_t M>
 bool allclose(std::array<T, M> a, std::array<T, M> b, double tol)
 {
   for (auto i = 0u; i < M; ++i)
-    if (std::abs(a[i] - b[i]) > tol)
-      return false;
+    if (std::abs(a[i] - b[i]) > tol) return false;
   return true;
 }
 
@@ -50,8 +56,7 @@ Matrix<T, M - 1, N> removeRow(Matrix<T, M, N> const& a, unsigned int n)
   int loc = 0;
   for (auto i = 0u; i < M; ++i)
   {
-    if (i == n)
-      continue;
+    if (i == n) continue;
     for (auto j = 0u; j < N; ++j)
     {
       matrix[loc][j] = a.get(i, j);
@@ -71,8 +76,7 @@ Matrix<T, M, N - 1> removeCol(Matrix<T, M, N> const& a, unsigned int n)
     int loc = 0;
     for (auto j = 0u; j < N; ++j)
     {
-      if (j == n)
-        continue;
+      if (j == n) continue;
       matrix[i][loc] = a.get(i, j);
       ++loc;
     }
@@ -152,6 +156,27 @@ template <typename T,
           std::size_t N,
           typename R = decltype(T() * U())>
 std::array<R, M> operator*(Matrix<T, M, N> const& a, std::array<U, N> const& b)
+{
+  std::array<R, M> matrix;
+  for (auto i = 0u; i < M; ++i)
+  {
+    R sum = 0;
+    for (auto j = 0u; j < N; ++j)
+    {
+      sum += a.get(i, j) * b[j];
+    }
+    matrix[i] = sum;
+  }
+  return matrix;
+}
+
+/* Multiplication Array * Matrix */
+template <typename T,
+          typename U,
+          std::size_t M,
+          std::size_t N,
+          typename R = decltype(T() * U())>
+std::array<R, M> operator*(std::array<U, N> const& b, Matrix<T, M, N> const& a)
 {
   std::array<R, M> matrix;
   for (auto i = 0u; i < M; ++i)
@@ -250,8 +275,7 @@ bool operator==(Matrix<T, M, N> const& a, Matrix<U, M, N> const& b)
   {
     for (auto j = 0u; j < N; ++j)
     {
-      if (a.get(i, j) != b.get(i, j))
-        return false;
+      if (a.get(i, j) != b.get(i, j)) return false;
     }
   }
   return true;
@@ -301,7 +325,7 @@ T infNorm(Matrix<T, M, N>& m)
 }
 
 template <typename T, std::size_t N>
-std::array<T, N> powerIteration(Matrix<T, N, N> const& A, unsigned int const& MAX)
+T powerIteration(Matrix<T, N, N> const& A, unsigned int const& MAX)
 {
   std::array<T, N> b_k;
 
@@ -314,6 +338,109 @@ std::array<T, N> powerIteration(Matrix<T, N, N> const& A, unsigned int const& MA
     auto norm = pNorm(Ab_k, 2);
     b_k = Ab_k / norm;
   }
-  return b_k;
+  return pNorm(A * b_k, 2);
 }
+
+template <typename T, std::size_t N>
+T inversePowerIteration(Matrix<T, N, N> & A, unsigned int const& MAX)
+{
+  std::array<T, N> v;
+  for (auto&& e : v)
+    e = randDouble(0.0, 10.0);
+
+  T lamda = 0;
+  for (auto i = 0u; i < MAX; ++i)
+  {
+    auto w = A.solveLinearSystemLU(v);
+    v = w / pNorm(w,2);
+    lamda = v*(A*v);
+  }
+    return lamda;
+}
+
+template <typename T, std::size_t N>
+Matrix<T, N * N, N * N> fivePointStencil()
+{
+  return Matrix<T, N * N, N * N>([](int i, int j) {
+    if (i == j) return -4;
+    if (i + 1 == j) return i % 3 != 2 ? 1 : 0;
+    if (i == j + 1) return i % 3 != 0 ? 1 : 0;
+    if (i + 3 == j) return 1;
+    if (i == j + 3) return 1;
+    return 0;
+
+  });
+  // return {
+  //   {-4, 1, 0, 1, 0, 0, 0, 0, 0},
+  //   {1, -4, 1, 0, 1, 0, 0, 0, 0},
+  //   {0, 1, -4, 0, 0, 1, 0, 0, 0},
+  //   {1, 0, 0, -4, 1, 0, 1, 0, 0},
+  //   {0, 1, 0, 1, -4, 1, 0, 1, 0},
+  //   {0, 0, 1, 0, 1, -4, 0, 0, 1},
+  //   {0, 0, 0, 1, 0, 0, -4, 1, 0},
+  //   {0, 0, 0, 0, 1, 0, 1, -4, 1},
+  //   {0, 0, 0, 0, 0, 1, 0, 1, -4}
+  // };
+}
+
+template <typename T, std::size_t N>
+Matrix<T, N * N, N * N> ninePointStencil()
+{
+  return Matrix<T, N * N, N * N>([](int i, int j) {
+    if (i == j) return -20;
+    if (i + 1 == j) return i % 3 != 2 ? 4 : 0;
+    if (i == j + 1) return i % 3 != 0 ? 4 : 0;
+    if (i + 2 == j) return i % 3 != 0 ? 1 : 0;
+    if (i == j + 2) return i % 3 != 2 ? 1 : 0;
+    ;
+    if (i + 3 == j) return 4;
+    if (i == j + 3) return 4;
+    if (i + 4 == j) return i % 3 != 2 ? 1 : 0;
+    if (i == j + 4) return i % 3 != 0 ? 1 : 0;
+    ;
+  });
+  // return {
+  //   {-4, 1, 0, 1, 0, 0, 0, 0, 0},
+  //   {1, -4, 1, 0, 1, 0, 0, 0, 0},
+  //   {0, 1, -4, 0, 0, 1, 0, 0, 0},
+  //   {1, 0, 0, -4, 1, 0, 1, 0, 0},
+  //   {0, 1, 0, 1, -4, 1, 0, 1, 0},
+  //   {0, 0, 1, 0, 1, -4, 0, 0, 1},
+  //   {0, 0, 0, 1, 0, 0, -4, 1, 0},
+  //   {0, 0, 0, 0, 1, 0, 1, -4, 1},
+  //   {0, 0, 0, 0, 0, 1, 0, 1, -4}
+  // };
+}
+
+template <typename T, std::size_t N>
+Matrix<Point, N, N> generateMesh(int alpha, T a, T b)
+{
+  auto h = (b - a) / alpha;
+
+  return Matrix<Point, N, N>([&](int i, int j) { return Point(a + i * h, b + j * h); });
+}
+
+template <typename T, typename F, std::size_t N>
+std::array<T, N * N> initMeshB(Matrix<Point, N, N> const& mesh, F f)
+{
+  std::array<T, N * N> b;
+  for (auto i = 0u; i < N; ++i)
+  {
+    for (auto j = 0u; j < N; ++j)
+    {
+      b[i * N + j] = f(mesh[i][j].x * mesh[i][j].y);
+    }
+  }
+  return b;
+}
+
+template <typename T, std::size_t N, std::size_t M>
+double conditionNumber(Matrix<T, N, M> m)
+{
+  auto max = powerIteration(m, 1000u);
+  auto min = inversePowerIteration(m, 1000u);
+
+  return max/min;
+}
+
 #endif

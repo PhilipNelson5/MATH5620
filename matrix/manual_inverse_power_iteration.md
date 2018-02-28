@@ -1,5 +1,5 @@
 ---
-title: Power Iteration
+title: Inverse Power Iteration
 math: true
 layout: default
 ---
@@ -9,7 +9,7 @@ layout: default
 <a href="https://philipnelson5.github.io/MATH5620/SoftwareManual"> Table of Contents </a>
 # Power Iteration
 
-**Routine Name:** powerIteration
+**Routine Name:** inversePowerIteration
 
 **Author:** Philip Nelson
 
@@ -17,37 +17,36 @@ layout: default
 
 ## Description
 
-`powerIteration` calculates the largest Eigenvalue of a `N`x`N` matrix.
+`inversePowerIteration` calculates the smallest Eigenvalue of a `N`x`N` matrix.
 
 ## Input
 
-
-`powerIteration(Matrix<T, N, N> const& A, unsigned int const& MAX)` requires:
+`inversePowerIteration(Matrix<T, N, N> const& A, unsigned int const& MAX)` requires:
 
 * `Matrix<T, N, N> const& A` - an `N`x`N` matrix
 * `unsigned int const& MAX` - the maximum number of iterations
 
 ## Output
 
-~he largest Eigenvalue
+The smallest Eigenvalue
 
 ## Code
 {% highlight c++ %}
 template <typename T, std::size_t N>
-T powerIteration(Matrix<T, N, N> const& A, unsigned int const& MAX)
+T inversePowerIteration(Matrix<T, N, N> & A, unsigned int const& MAX)
 {
-  std::array<T, N> b_k;
-
-  for (auto&& e : b_k)
+  std::array<T, N> v;
+  for (auto&& e : v)
     e = randDouble(0.0, 10.0);
 
+  T lamda = 0;
   for (auto i = 0u; i < MAX; ++i)
   {
-    auto Ab_k = A * b_k;
-    auto norm = pNorm(Ab_k, 2);
-    b_k = Ab_k / norm;
+    auto w = A.solveLinearSystemLU(v);
+    v = w / pNorm(w,2);
+    lamda = v*(A*v);
   }
-  return pNorm(A * b_k, 2);
+    return lamda;
 }
 {% endhighlight %}
 
@@ -58,9 +57,9 @@ int main()
   Matrix<double, 5, 5> A(
     [](unsigned int const& i, unsigned int const& j) { return 1.0 / (i + j + 1.0); });
 
-  auto eigval = powerIteration(A, 1000u);
+  auto eigval = inversePowerIteration(A, 1000u);
   std::cout << "A\n" << A << std::endl;
-  std::cout << "Largest Eigenvalue\n" << eigval << std::endl;
+  std::cout << "Smallest Eigenvalue\n" << eigval << std::endl;
 }
 {% endhighlight %}
 
@@ -73,8 +72,8 @@ A
 |       0.25       0.2     0.167     0.143     0.125 |
 |        0.2     0.167     0.143     0.125     0.111 |
 
-Largest Eigenvalue
-1.57
+Smallest Eigenvalue
+3.29e-06
 
 ```
 
