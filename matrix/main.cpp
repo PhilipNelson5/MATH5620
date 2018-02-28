@@ -102,17 +102,16 @@ int main()
   // std::cout << fivePointStencil<double, 3>() << std::endl;
   // std::cout << ninePointStencil<double, 3>() << std::endl;
 
-  // const constexpr std::size_t s = 5;
-  // auto mesh = generateMesh<double, s>(0, 1);
-  // auto b = initMeshB(mesh, sin);
+  const constexpr std::size_t s = 7;
+  auto mesh = generateMesh<double, s>(0, 1);
+  auto b = initMeshB(mesh, sin);
   // auto stencil = ninePointStencil<double, s-2>();
   // auto res = stencil.solveLinearSystemLU(b);
   // auto finalMat = arrayToMat(res);
   // std::cout << "mesh\n" << mesh << std::endl << std::endl;
   // std::cout << "stencil\n" << stencil << std::endl << std::endl;
-  // std::cout << "b\n" << b << std::endl << std::endl;
+  std::cout << "b\n" << b << std::endl << std::endl;
   // std::cout << "result\n" << res << std::endl;
   // std::cout << "final\n" << finalMat << std::endl;
 
-  std::cout << ninePointStencil<double, 3>() << std::endl;
 }

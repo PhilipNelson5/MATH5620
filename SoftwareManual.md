@@ -47,12 +47,11 @@ title: MATH 5620 Software Manual
 |                   | [Inverse Power Method for Smallest Eigenvalue](./matrix/manual_inverse_power_iteration)|
 | **Problem 3.**    | [Power Method Iteration for Solving 2nd Order FD Elliptic ODE](./matrix/example_power_iteration_elliptic_ode)|
 | **Problem 4.**    | [Inverse Power Method for Solving 2nd Order FD Elliptic ODE](./matrix/example_inverse_power_iteration_elliptic_ode)|
-| **Problem 5.**    | [Laplace Equation 5-point Stencil](./matrix/manual_solve_five_point_stencil)|
-|                   | [Laplace Equation 5-point Stencil](./matrix/manual_gen_five_point_stencil)|
-|                   | [Laplace Equation 5-point Stencil](./matrix/manual_five_point_stencil)|
-| **Problem 6.**    | [Laplace Equation 9-point Stencil](./matrix/manual_solve_nine_point_stencil)|
-|                   | [Laplace Equation 5-point Stencil](./matrix/manual_gen_five_point_stencil)|
-|                   | [Laplace Equation 5-point Stencil](./matrix/manual_five_point_stencil)|
+| **Problem 5.**    | [Solve Laplace Equation with 5-point Stencil](./matrix/manual_solve_five_point_stencil)|
+|                   | [Generate 5-point Stencil](./matrix/manual_gen_five_point_stencil)|
+|                   | [Generate Mesh](./matrix/manual_gen_mesh)|
+|                   | [Generate B for Mesh](./matrix/manual_init_b)|
+| **Problem 6.**    | [Solve Laplace Equation with 9-point Stencil](./matrix/manual_solve_nine_point_stencil)|
 
 -----
 

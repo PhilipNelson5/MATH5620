@@ -35,15 +35,15 @@ A double with the desired norm value.
 
 ## Code
 {% highlight c++ %}
-int main()
-{
 <++>
-}
 {% endhighlight %}
 
 ## Example
 {% highlight c++ %}
+int main()
+{
 <++>
+}
 {% endhighlight %}
 
 ## Result
