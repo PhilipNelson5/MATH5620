@@ -102,7 +102,7 @@ int main()
   // std::cout << fivePointStencil<double, 3>() << std::endl;
   // std::cout << ninePointStencil<double, 3>() << std::endl;
 
-  auto answer = solveFivePointStencil<double, 5>(0.0, 1.0, sin);
+  auto answer = solveNinePointStencil<double, 5>(0.0, 1.0, sin);
   auto finalMat = arrayToMat(answer);
   std::cout << "Answer in Matrix Form\n" << finalMat << std::endl;
 }

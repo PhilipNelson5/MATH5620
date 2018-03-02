@@ -465,4 +465,18 @@ auto solveFivePointStencil(T a, T b, F f)
   return res;
 }
 
+template <typename T, std::size_t N, typename F>
+auto solveNinePointStencil(T a, T b, F f)
+{
+  auto mesh = generateMesh<double, N>(a, b);
+  auto bv = initMeshB(mesh, f);
+  auto stencil = ninePointStencil<double, N-2>();
+  auto res = stencil.solveLinearSystemLU(bv);
+  std::cout << "mesh\n" << mesh << std::endl << std::endl;
+  std::cout << "stencil\n" << stencil << std::endl << std::endl;
+  std::cout << "u\n" << bv << std::endl << std::endl;
+  std::cout << "result\n" << res << std::endl;
+  return res;
+}
+
 #endif

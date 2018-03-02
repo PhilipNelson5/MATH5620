@@ -21,7 +21,7 @@ layout: default
 
 ## Input
 
-`solveFivePointStencil(F f)` requires:
+`solveFivePointStencil(T a, T b, F f)` requires:
 
 * `T a` - the start boundary
 * `T b` - the end boundary
@@ -82,7 +82,7 @@ stencil
 |          0         0         0         0         0         1         0         1        -4 |
 
 
-u
+bv
 [     0.0625     0.125     0.186     0.125     0.247     0.366     0.186     0.366     0.533 ]
 
 
