@@ -47,10 +47,10 @@ auto solveFivePointStencil(T a, T b, F f)
 {% endhighlight %}
 
 solveFivePointStencil relies on:
-[ninePointStencil](../matrix/manual_gen_nine_point_stencil)|
-[generateMesh](../matrix/manual_gen_mesh)|
-[initMeshB](../matrix/manual_init_b)|
-[solveLinearSystemLU](../matrix/manual_linear_solve_lu)|
+[ninePointStencil](./manual_gen_nine_point_stencil)|
+[generateMesh](./manual_gen_mesh)|
+[initMeshB](./manual_init_b)|
+[solveLinearSystemLU](./manual_linear_solve_lu)|
 
 ## Example
 {% highlight c++ %}
