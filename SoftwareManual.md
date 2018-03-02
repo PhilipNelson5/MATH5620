@@ -37,7 +37,7 @@ title: MATH 5620 Software Manual
 | **Problem 9.**    | [Approximate Elliptic ODE with K](./finiteDiffMethods/manual_solve_elliptic_ode_k)|
 
 ### Homework 3
-*due: 26 February 2017*
+*due: 1 March 2017*
 
 | Problem           | Software Manual|
 | :-----------------|:---------------|

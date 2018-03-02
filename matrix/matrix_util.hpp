@@ -451,4 +451,18 @@ Matrix<T, int(std::sqrt(N)), int(std::sqrt(N))> arrayToMat(std::array<T, N> a)
   return Matrix<T, int(std::sqrt(N)), int(std::sqrt(N))>([&](int i, int j){return a[i * int(std::sqrt(N)) + j];});
 }
 
+template <typename T, std::size_t N, typename F>
+auto solveFivePointStencil(T a, T b, F f)
+{
+  auto mesh = generateMesh<double, N>(a, b);
+  auto bv = initMeshB(mesh, f);
+  auto stencil = fivePointStencil<double, N-2>();
+  auto res = stencil.solveLinearSystemLU(bv);
+  std::cout << "mesh\n" << mesh << std::endl << std::endl;
+  std::cout << "stencil\n" << stencil << std::endl << std::endl;
+  std::cout << "u\n" << bv << std::endl << std::endl;
+  std::cout << "result\n" << res << std::endl;
+  return res;
+}
+
 #endif
