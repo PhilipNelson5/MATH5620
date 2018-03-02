@@ -7,7 +7,7 @@ layout: default
 {% include mathjax.html %}
 
 <a href="https://philipnelson5.github.io/MATH5620/SoftwareManual"> Table of Contents </a>
-# Five Point Stencil
+# Nine Point Stencil
 
 **Routine Name:** ninePointStencil
 
@@ -58,6 +58,7 @@ int main()
 
 ## Result
 ```
+|        -20         4         0         4         1         0         0         0         0 |
 |          4       -20         4         1         4         1         0         0         0 |
 |          0         4       -20         0         1         4         0         0         0 |
 |          4         1         0       -20         4         0         4         1         0 |

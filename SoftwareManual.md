@@ -50,8 +50,9 @@ title: MATH 5620 Software Manual
 | **Problem 5.**    | [Solve Laplace Equation with 5-point Stencil](./matrix/manual_solve_five_point_stencil)|
 |                   | [Generate 5-point Stencil](./matrix/manual_gen_five_point_stencil)|
 |                   | [Generate Mesh](./matrix/manual_gen_mesh)|
-|                   | [Generate B for Mesh](./matrix/manual_init_b)|
+|                   | [Initialize B for Mesh](./matrix/manual_init_b)|
 | **Problem 6.**    | [Solve Laplace Equation with 9-point Stencil](./matrix/manual_solve_nine_point_stencil)|
+|                   | [Generate 9-point Stencil](./matrix/manual_gen_nine_point_stencil)|
 
 -----
 
