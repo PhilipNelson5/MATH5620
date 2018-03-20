@@ -8,7 +8,7 @@ title: MATH 5620 Software Manual
 # Table of Contents
 
 ### Homework 1
-*due: 25 January 2017*
+*due: 25 January 2018*
 
 | Problem           | Software Manual|
 | :-----------------|:---------------|
@@ -19,7 +19,7 @@ title: MATH 5620 Software Manual
 
 
 ### Homework 2
-*due: 8 February 2017*
+*due: 8 February 2018*
 
 | Problem           | Software Manual|
 | :-----------------|:---------------|
@@ -34,10 +34,9 @@ title: MATH 5620 Software Manual
 | **Problem 8.**    | [Solve Elliptic ODE](./finiteDiffMethods/manual_solve_elliptic_ode)|
 |                   | [Vector P Norm](./matrix/manual_vector_pnorm)|
 |                   | [Vector Infinity Norm](./matrix/manual_vector_infinity_norm)|
-| **Problem 9.**    | [Approximate Elliptic ODE with K](./finiteDiffMethods/manual_solve_elliptic_ode_k)|
 
 ### Homework 3
-*due: 1 March 2017*
+*due: 1 March 2018*
 
 | Problem           | Software Manual|
 | :-----------------|:---------------|
@@ -53,6 +52,16 @@ title: MATH 5620 Software Manual
 |                   | [Initialize B for Mesh](./matrix/manual_init_b)|
 | **Problem 6.**    | [Solve Laplace Equation with 9-point Stencil](./matrix/manual_solve_nine_point_stencil)|
 |                   | [Generate 9-point Stencil](./matrix/manual_gen_nine_point_stencil)|
+
+### Homework 4
+*due: 22 March 2018*
+
+| Problem           | Software Manual|
+| :-----------------|:---------------|
+| **Problem 1.**    | [Gauss-Seidel](./matrix/manual_matrix_one_norm)|
+| **Problem 2.**    | [Conjugate Gradient](./matrix/manual_power_iteration)|
+| **Problem 3.**    | [Application of Conjugate Gradient](./matrix/example_power_iteration_elliptic_ode)|
+| **Problem 4.**    | [Explicit Euler](./matrix/example_inverse_power_iteration_elliptic_ode)|
 
 -----
 
