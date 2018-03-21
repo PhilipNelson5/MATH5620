@@ -1,5 +1,5 @@
 ---
-title: Gauss Sidel
+title: Conjugate Gradient
 math: true
 layout: default
 ---
@@ -7,9 +7,9 @@ layout: default
 {% include mathjax.html %}
 
 <a href="https://philipnelson5.github.io/MATH5620/SoftwareManual"> Table of Contents </a>
-# Gauss Sidel
+# Conjugate Gradient Method
 
-**Routine Name:** gauss_sidel
+**Routine Name:** `conjugate_gradient`
 
 **Author:** Philip Nelson
 
@@ -17,14 +17,15 @@ layout: default
 
 ## Description
 
-`gauss_sidel` is an iterative method used to solve a linear system of equations \\(Ax=b\\). It is named after the German mathematicians Carl Friedrich Gauss and Philipp Ludwig von Seidel, and is similar to the Jacobi method. Though it can be applied to any matrix with non-zero elements on the diagonals, convergence is only guaranteed if the matrix is either diagonally dominant, or symmetric and positive definite. [1](https://en.wikipedia.org/wiki/Gauss–Seidel_method)
+`conjugate_gradient` is an algorithm for the numerical solution of particular systems of linear equations, namely those whose matrix is symmetric and positive-definite. `conjugate_gradient` is implemented as an iterative algorithm, applicable to sparse systems that are too large to be handled by a direct implementation.[1](https://en.wikipedia.org/wiki/Conjugate_gradient_method)
 
 ## Input
 
+
 ```
-gauss_sidel(Matrix<T, N, N>& A,
-            std::array<T, N> const& b,
-            unsigned int const& MAX_ITERATIONS = 1000u)
+std::array<T, N> conjugate_gradient(Matrix<T, N, N>& A,
+                                    std::array<T, N> const& b,
+                                    unsigned int const& MAX_ITERATIONS = 1000u)
 ```
 requires:
 
@@ -39,36 +40,43 @@ The solution vector \\(x\\).
 ## Code
 {% highlight c++ %}
 template <typename T, std::size_t N>
-std::array<T, N> gauss_sidel(Matrix<T, N, N>& A,
-                             std::array<T, N> const& b,
-                             unsigned int const& MAX_ITERATIONS = 1000u)
+std::array<T, N> conjugate_gradient(Matrix<T, N, N>& A,
+                                    std::array<T, N> const& b,
+                                    unsigned int const& MAX_ITERATIONS = 1000u)
 {
-  std::array<T, N> x, xn;
-  x.fill(0);
+  auto ct = 0u;
+  auto tol = maceps<T>().maceps;
+  std::array<T, N> x_k, x_k1;
+  x_k.fill(0);
+  x_k1.fill(0);
+  auto r_k = b;
+  auto r_k1 = r_k, r_k2 = r_k;
+  auto p_k = r_k, p_k1 = r_k;
   for (auto k = 0u; k < MAX_ITERATIONS; ++k)
   {
-    xn.fill(0);
-    std::cout << x << '\n';
-    for (auto i = 0u; i < N; ++i)
+    ++ct;
+    if (k != 0)
     {
-      auto s1 = 0.0, s2 = 0.0;
-      for (auto j = 0u; j < i; ++j)
-      {
-        s1 += A[i][j] * xn[j];
-      }
-      for (auto j = i + 1; j < N; ++j)
-      {
-        s2 += A[i][j] * x[j];
-      }
-      xn[i] = (b[i] - s1 - s2) / A[i][i];
+      auto b_k = (r_k1 * r_k1) / (r_k2 * r_k2);
+      p_k = r_k1 + b_k * p_k1;
     }
-    if (allclose(x, xn, maceps<T>().maceps))
+    auto s_k = A * p_k;
+    auto a_k = r_k1 * r_k1 / (p_k * s_k);
+    x_k = x_k1 + a_k * p_k;
+    r_k = r_k1 - a_k * s_k;
+
+    if (allclose(x_k, x_k1, tol))
     {
-      return xn;
+      std::cout << "Conjugate Gradient completed in " << ct << " iterations\n";
+      return x_k;
     }
-    x = xn;
+
+    r_k2 = r_k1;
+    r_k1 = r_k;
+    x_k1 = x_k;
+    p_k1 = p_k;
   }
-  return x;
+  return x_k;
 }
 {% endhighlight %}
 
@@ -76,9 +84,7 @@ std::array<T, N> gauss_sidel(Matrix<T, N, N>& A,
 {% highlight c++ %}
 int main()
 {
-int main()
-{
-  Matrix<double, 2, 2> A ({
+  Matrix<double, 2, 2> A({
       {16,   3},
       { 7, -11}
       });
@@ -88,6 +94,7 @@ int main()
   std::cout << "A\n" << A << "b\n" << b << '\n';
   std::cout << gauss_sidel(A, b, 100u) << "\n";
   std::cout << A.jacobiIteration(b, 100u) << "\n";
+  std::cout << conjugate_gradient(A, b, 10000u) << "\n";
 
   Matrix<double, 4, 4> A1({
       {10, -1,  2,  0},
@@ -101,12 +108,11 @@ int main()
   std::cout << "A\n" << A1 << "b\n" << b1 << '\n';
   std::cout << gauss_sidel(A1, b1, 100u) << "\n";
   std::cout << A1.jacobiIteration(b1, 100u) << "\n";
-}
+  std::cout << conjugate_gradient(A1, b1, 1000u) << "\n";
 }
 {% endhighlight %}
 
 ## Result
-It is clear to see that as the matrix size increases, the Gauss Sidel method outperforms Jacobi Iteration.
 ```
 A
 |         16         3 |
@@ -118,6 +124,9 @@ Gauss Sidel completed in 18 iterations
 [      0.812    -0.665 ]
 
 Jacobi Iteration completed in 35 iterations
+[      0.812    -0.665 ]
+
+Conjugate Gradient completed in 75 iterations
 [      0.812    -0.665 ]
 
 A
@@ -132,6 +141,9 @@ Gauss Sidel completed in 17 iterations
 [          1         2        -1         1 ]
 
 Jacobi Iteration completed in 43 iterations
+[          1         2        -1         1 ]
+
+Conjugate Gradient completed in 5 iterations
 [          1         2        -1         1 ]
 ```
 
