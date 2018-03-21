@@ -18,14 +18,6 @@ struct Point
   double y;
 };
 
-template <typename T, std::size_t M>
-bool allclose(std::array<T, M> a, std::array<T, M> b, double tol)
-{
-  for (auto i = 0u; i < M; ++i)
-    if (std::abs(a[i] - b[i]) > tol) return false;
-  return true;
-}
-
 template <typename T, std::size_t M, std::size_t N>
 class Matrix;
 
@@ -458,10 +450,6 @@ auto solveFivePointStencil(T a, T b, F f)
   auto bv = initMeshB(mesh, f);
   auto stencil = fivePointStencil<double, N-2>();
   auto res = stencil.solveLinearSystemLU(bv);
-  std::cout << "mesh\n" << mesh << std::endl << std::endl;
-  std::cout << "stencil\n" << stencil << std::endl << std::endl;
-  std::cout << "u\n" << bv << std::endl << std::endl;
-  std::cout << "result\n" << res << std::endl;
   return res;
 }
 
@@ -472,10 +460,6 @@ auto solveNinePointStencil(T a, T b, F f)
   auto bv = initMeshB(mesh, f);
   auto stencil = ninePointStencil<double, N-2>();
   auto res = stencil.solveLinearSystemLU(bv);
-  std::cout << "mesh\n" << mesh << std::endl << std::endl;
-  std::cout << "stencil\n" << stencil << std::endl << std::endl;
-  std::cout << "u\n" << bv << std::endl << std::endl;
-  std::cout << "result\n" << res << std::endl;
   return res;
 }
 

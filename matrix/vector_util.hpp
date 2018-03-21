@@ -6,6 +6,26 @@
 #include <cmath>
 #include <iomanip>
 #include <iostream>
+#include "random.hpp"
+
+template <typename T, std::size_t N>
+std::array<T, N> initRandom(int start, int end)
+{
+  std::array<T, N> a;
+  for(auto i = 0u; i < N; ++i)
+    a[i] = randDouble(start, end);
+
+  return a;
+}
+
+template <typename T, std::size_t M>
+bool allclose(std::array<T, M> a, std::array<T, M> b, double tol)
+{
+  for (auto i = 0u; i < M; ++i)
+    if (std::abs(a[i] - b[i]) > tol) return false;
+  return true;
+}
+
 
 template <typename T, std::size_t N>
 double pNorm(std::array<T, N> v, unsigned int const& p)

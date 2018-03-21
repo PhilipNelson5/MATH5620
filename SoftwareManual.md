@@ -58,7 +58,7 @@ title: MATH 5620 Software Manual
 
 | Problem           | Software Manual|
 | :-----------------|:---------------|
-| **Problem 1.**    | [Gauss-Seidel](./matrix/manual_matrix_one_norm)|
+| **Problem 1.**    | [Gauss-Seidel](./gaussSidel/manual_gauss_sidel)|
 | **Problem 2.**    | [Conjugate Gradient](./matrix/manual_power_iteration)|
 | **Problem 3.**    | [Application of Conjugate Gradient](./matrix/example_power_iteration_elliptic_ode)|
 | **Problem 4.**    | [Explicit Euler](./matrix/example_inverse_power_iteration_elliptic_ode)|
