@@ -17,7 +17,7 @@ layout: default
 
 ## Description
 
-`conjugate_gradient` is an algorithm for the numerical solution of particular systems of linear equations, namely those whose matrix is symmetric and positive-definite. `conjugate_gradient` is implemented as an iterative algorithm, applicable to sparse systems that are too large to be handled by a direct implementation.[1](https://en.wikipedia.org/wiki/Conjugate_gradient_method)
+`conjugate_gradient` is an algorithm for the numerical solution of particular systems of linear equations, namely those whose matrix is symmetric and positive-definite. `conjugate_gradient` is implemented as an iterative algorithm, applicable to sparse systems that are too large to be handled by a direct implementation. [1](https://en.wikipedia.org/wiki/Conjugate_gradient_method)
 
 ## Input
 
@@ -113,6 +113,7 @@ int main()
 {% endhighlight %}
 
 ## Result
+As opposed to Gauss Sidel, Conjugate Gradient converges differently on the solution depending on the topology of the region around the solution.
 ```
 A
 |         16         3 |
