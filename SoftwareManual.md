@@ -60,7 +60,7 @@ title: MATH 5620 Software Manual
 | :-----------------|:---------------|
 | **Problem 1.**    | [Gauss-Seidel](./gaussSidel/manual_gauss_sidel)|
 | **Problem 2.**    | [Conjugate Gradient](./conjugateGradient/manual_conjugate_gradient)|
-| **Problem 3.**    | [Application of Conjugate Gradient](./matrix/example_power_iteration_elliptic_ode)|
+| **Problem 3.**    | [Application of Conjugate Gradient](./testConjugateGradientFivePoint/manual_solve_five_point_stencil_test)|
 | **Problem 4.**    | [Explicit Euler](./explicitEuler/manual_explicit_euler)|
 
 -----
