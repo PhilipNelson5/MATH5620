@@ -1,4 +1,5 @@
 #include "../finiteDiffMethods/finDiffCoeff.hpp"
+#include "../jacobiIteration/jacobiIteration.hpp"
 #include "matrix.hpp"
 #include "matrix_util.hpp"
 #include "termColors.hpp"
@@ -63,14 +64,14 @@ void runTests()
   test(infNorm(l), 20, "vector infinity norm");
   test(oneNorm(i), 13, "matrix one norm");
   test(infNorm(i), 17, "matrix infinity norm");
-  test(pNorm(m.jacobiIteration(o) - n, 2) < 1e-10, true, "jacobi iteration");
+  test(pNorm(jacobiIteration(m, o) - n, 2) < 1e-10, true, "jacobi iteration");
 
   std::cout << BLUE << "\n[      TESTS COMPLETE     ]\n\n" << RESET;
 }
 
 int main()
 {
-  // runTests();
+  runTests();
 
   // Matrix<double, 4, 4> U({{3, 5, -6, 4}, {0, 4, -6, 9}, {0, 0, 3, 11}, {0, 0, 0, -9}});
   // std::array<double, 4> x{4, 6, -7, 9};
@@ -102,7 +103,7 @@ int main()
   // std::cout << fivePointStencil<double, 3>() << std::endl;
   // std::cout << ninePointStencil<double, 3>() << std::endl;
 
-  auto answer = solveNinePointStencil<double, 25>(0.0, 1.0, sin);
-  auto finalMat = arrayToMat(answer);
-  std::cout << "Answer in Matrix Form\n" << finalMat << std::endl;
+  // auto answer = solveNinePointStencil<double, 25>(0.0, 1.0, sin);
+  // auto finalMat = arrayToMat(answer);
+  // std::cout << "Answer in Matrix Form\n" << finalMat << std::endl;
 }

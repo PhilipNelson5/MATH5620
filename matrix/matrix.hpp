@@ -230,56 +230,12 @@ public:
     return triDiagThomas(a, b, c, d);
   }
 
-  std::array<T, M> jacobiIteration(std::array<T, M> const& b, unsigned int const& MAX = 1000u)
-  {
-    auto ct = 0u;
-    std::array<T, M> zeros;
-    zeros.fill(0);
-
-    std::array<T, M> x = zeros;
-
-    for (auto n = 0u; n < MAX; ++n)
-    {
-      ++ct;
-      auto x_n = zeros;
-
-      for (auto i = 0u; i < M; ++i)
-      {
-        T sum = 0;
-        for (auto j = 0u; j < N; ++j)
-        {
-          if (j == i) continue;
-          sum += m[i][j] * x[j];
-        }
-        x_n[i] = (b[i] - sum) / m[i][i];
-      }
-
-      if (allclose(x, x_n, maceps<T>().maceps))
-      {
-        std::cout << "Jacobi Iteration completed in " << ct << " iterations\n";
-        return x_n;
-      }
-
-      x = x_n;
-    }
-
-    return x;
-  }
-
   Matrix<T, N * N, N * N> blockToMatrix(Matrix<Matrix<T, N, N>, N * N, N * N> block)
   {
     Matrix<T, N * N, N * N> res(
       [&](int i, int j) { return block[i / N][j / N][i - (N * (i / N))][j - (N * (j / N))]; });
 
     return res;
-
-    // for (auto i = 0u; i < N*N; ++i)
-    // {
-    //   for (auto j = 0u; j < N*N; ++j)
-    //   {
-    //     res
-    //   }
-    // }
   }
 
 private:
