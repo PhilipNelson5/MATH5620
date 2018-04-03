@@ -63,6 +63,21 @@ title: MATH 5620 Software Manual
 | **Problem 3.**    | [Application of Conjugate Gradient](./testConjugateGradientFivePoint/manual_solve_five_point_stencil_test)|
 | **Problem 4.**    | [Explicit Euler](./explicitEuler/manual_explicit_euler)|
 
+### Homework 5
+*due: 3 April 2018*
+
+| Problem           | Software Manual|
+| :-----------------|:---------------|
+| **Problem 1.**    | [First Order IVP Test](./gaussSidel/manual_gauss_sidel)|
+|                   | [Logistic Model Test](./conjugateGradient/manual_conjugate_gradient)|
+| **Problem 2.**    | [IVP via Explicit Euler Test](./conjugateGradient/manual_conjugate_gradient)|
+| **Problem 3.**    | [Implicit Euler](./testConjugateGradientFivePoint/manual_solve_five_point_stencil_test)|
+|                   | [Newton's Method](./testConjugateGradientFivePoint/manual_solve_five_point_stencil_test)|
+| **Problem 4.**    | [Runge Kutta order 2](./explicitEuler/manual_explicit_euler)|
+|                   | [Runge Kutta order 4](./explicitEuler/manual_explicit_euler)|
+| **Problem 5.**    | [Adam's Bashford](./explicitEuler/manual_explicit_euler)|
+| **Problem 6.**    | [Summary of Iterative Methods](./explicitEuler/manual_explicit_euler)|
+
 -----
 
 ### Basic Routines
