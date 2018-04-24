@@ -78,6 +78,16 @@ title: MATH 5620 Software Manual
 | **Problem 5.**    | [Adam's Bashford](./explicitEuler/manual_explicit_euler)|
 | **Problem 6.**    | [Summary of Iterative Methods](./explicitEuler/manual_explicit_euler)|
 
+### Homework 6
+*due: 24 April 2018*
+
+| Problem           | Software Manual|
+| :-----------------|:---------------|
+| **Problem 1.**    | [Experiments 7.1, 7.2, 7.4](./template.md)|
+| **Problem 2.**    | [Experiment - Implicit Euler](./template.md)|
+| **Problem 3.**    | [Experiment - Predictor Corrector](./template.md)|
+| **Problem 4.**    | [Experiment - Runge Kutta](./template.md)|
+
 -----
 
 ### Basic Routines
