@@ -76,7 +76,7 @@ title: MATH 5620 Software Manual
 | **Problem 4.**    | [Runge Kutta order 2](./rungeKuttaOrder2/manual_runge_kutta_order2)|
 |                   | [Runge Kutta order 4](./rungeKuttaOrder4/manual_runge_kutta_order4)|
 | **Problem 5.**    | [Adam's Bashford](./predictorCorrector/manual_predictor_corrector)|
-| **Problem 6.**    | [Summary of Iterative Methods](./explicitEuler/manual_explicit_euler)|
+| **Problem 6.**    | [Summary of Iterative Methods](./SumaryOfIterativeMethods)|
 
 ### Homework 6
 *due: 24 April 2018*
