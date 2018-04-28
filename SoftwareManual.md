@@ -71,7 +71,7 @@ title: MATH 5620 Software Manual
 | **Problem 1.**    | [First Order IVP Test](./5.1IVP/IVP_test)|
 |                   | [Logistic Model Test](./logistic2/manual)|
 | **Problem 2.**    | [IVP via Explicit Euler Test](./explicitEulerTest/manual_explicit_euler_test)|
-| **Problem 3.**    | [Implicit Euler](./implicit_euler/manual_implicit_euler)|
+| **Problem 3.**    | [Implicit Euler](./implicitEuler/manual_implicit_euler)|
 |                   | [Newton's Method](./newtonsMethod/manual_newtons_method)|
 | **Problem 4.**    | [Runge Kutta order 2](./explicitEuler/manual_explicit_euler)|
 |                   | [Runge Kutta order 4](./explicitEuler/manual_explicit_euler)|
