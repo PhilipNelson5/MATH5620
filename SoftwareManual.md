@@ -73,8 +73,8 @@ title: MATH 5620 Software Manual
 | **Problem 2.**    | [IVP via Explicit Euler Test](./explicitEulerTest/manual_explicit_euler_test)|
 | **Problem 3.**    | [Implicit Euler](./implicitEuler/manual_implicit_euler)|
 |                   | [Newton's Method](./newtonsMethod/manual_newtons_method)|
-| **Problem 4.**    | [Runge Kutta order 2](./explicitEuler/manual_explicit_euler)|
-|                   | [Runge Kutta order 4](./explicitEuler/manual_explicit_euler)|
+| **Problem 4.**    | [Runge Kutta order 2](./rungeKuttaOrder2/manual_runge_kutta_order2)|
+|                   | [Runge Kutta order 4](./rungeKuttaOrder4/manual_runge_kutta_order4)|
 | **Problem 5.**    | [Adam's Bashford](./explicitEuler/manual_explicit_euler)|
 | **Problem 6.**    | [Summary of Iterative Methods](./explicitEuler/manual_explicit_euler)|
 
