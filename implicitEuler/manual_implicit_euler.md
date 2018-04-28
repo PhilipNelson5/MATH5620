@@ -7,7 +7,7 @@ layout: default
 {% include mathjax.html %}
 
 <a href="https://philipnelson5.github.io/MATH5620/SoftwareManual"> Table of Contents </a>
-# Explicit Euler Method
+# Implicit Euler Method
 
 **Routine Name:** `implicit_euler`
 
