@@ -28,9 +28,8 @@ Three families of linear multistep methods are commonly used: Adams–Bashforth 
 
 The Adams–Bashforth methods are explicit methods. The coefficients are \\(a_{s-1}=-1\\) and \\(a_{s-2}=\cdots =a_0=0\\), while the \\(b_j\\) are chosen such that the methods has order s (this determines the methods uniquely).
 
-The Adams–Moulton methods are similar to the Adams–Bashforth methods in that they also have \\(a_{s-1}=-1 and \\(a_{s-2}=\cdots =a_0=0\\). Again the b coefficients are chosen to obtain the highest order possible. However, the Adams–Moulton methods are implicit methods. By removing the restriction that \\(b_s = 0\\) , an s-step Adams–Moulton method can reach order s+1, while an s-step Adams–Bashforth methods has only order s.
-
-[1](https://en.wikipedia.org/wiki/Linear_multistep_method)
+The Adams–Moulton methods are similar to the Adams–Bashforth methods in that they also have \\(a_{s-1}=-1\\) and \\(a_{s-2}=\cdots =a_0=0\\). Again the b coefficients are chosen to obtain the highest order possible. However, the Adams–Moulton methods are implicit methods. By removing the restriction that \\(b_s = 0\\) , an s-step Adams–Moulton method can reach order s+1, while an s-step Adams–Bashforth methods has only order s.
+[2](https://en.wikipedia.org/wiki/Linear_multistep_method)
 
 ## Input
 
