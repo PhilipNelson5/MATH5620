@@ -21,13 +21,12 @@ layout: default
 
 ## Input
 
-`runge_kutta_order2(T x0, T y0, T x, T dt, F f)` requires:
+`runge_kutta_order2(F f, unsigned int n, T h, T x0, T y0)` requires:
 
+* `F f` - the function
 * `T x0` - the initial `x`
 * `T y0` - the initial `y`
-* `T x` - the value of `x` for which you want to find value of `y`
-* `T dt` - the delta t step
-* `F f` - the function defining \\(\frac{dy}{dx}\\)
+* `T h` - the step size
 
 ## Output
 
@@ -36,15 +35,29 @@ The value of `y` at `x`.
 ## Code
 {% highlight c++ %}
 template <typename T, typename F>
-T runge_kutta_order2(T x0, T y0, T x, T dt, F f)
+T runge_kutta_order2(F f, unsigned int n, T h, T x0, T y0)
 {
-  auto tol = maceps<T>().maceps;
-  while (std::abs(x - x0) > tol)
+  long double y[n], x[n], k[n][n];
+
+  x[0] = x0;
+  y[0] = y0;
+
+  for (auto i = 1u; i <= n; i++)
   {
-    y0 = y0 + (dt * f(x0, y0));
-    x0 += dt;
+    x[i] = x[i - 1] + h;
   }
-  return y0;
+
+  for (auto j = 1u; j <= n; j++)
+  {
+    k[1][j] = h * f(x[j - 1], y[j - 1]);
+    std::cout << "K[1] = " << k[1][j] << "\t";
+    k[2][j] = h * f(x[j - 1] + h, y[j - 1] + k[1][j]);
+    std::cout << "K[2] = " << k[2][j] << "\n";
+    y[j] = y[j - 1] + ((k[1][j] + k[2][j]) / 2);
+    std::cout << "y[" << h * j << "] = " << std::setprecision(5) << y[j]
+              << std::endl;
+  }
+  return y;
 }
 {% endhighlight %}
 
