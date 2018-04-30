@@ -23,44 +23,27 @@ layout: default
 
 `newtons_method(T x0, T y0, T x, T dt, F f)` requires:
 
-* `T x0` - the initial `x`
-* `T y0` - the initial `y`
-* `T x` - the value of `x` for which you want to find value of `y`
-* `T dt` - the delta t step
-* `F f` - the function defining \\(\frac{dy}{dx}\\)
+* `F f` - the function
+* `T dt` - the timestep
+* `T x0` - the initial guess
+* `const uint MAX_ITERATONS` - the number of iterations
 
 ## Output
 
-The value of `y` at `x`.
+The zero of the function at `x`.
 
 ## Code
 {% highlight c++ %}
 template <typename T, typename F>
-T newtons_method(T x0, T y0, T x, T dt, F f)
+T newtons_method(F f, T dt, T x0, const unsigned int MAX_ITERATONS = 100)
 {
-  auto tol = maceps<T>().maceps;
-  while (std::abs(x - x0) > tol)
+  auto tol = maceps<T>().maceps, i = 0u;
+  while (std::abs(f(x0) - 0) > tol && ++i < MAX_ITERATONS)
   {
-    y0 = y0 + (dt * f(x0, y0));
-    x0 += dt;
+    x0 = x0 - f(x0) / ((f(x0 + dt) - f(x0)) / dt);
   }
-  return y0;
+  return x0;
 }
 {% endhighlight %}
-
-## Example
-{% highlight c++ %}
-int main()
-{
-  std::cout <<
-    newtons_method(0.0, -1.0, 0.4, 0.1, [](double a, double b){return a*a+2*b;})
-    << std::endl;
-}
-{% endhighlight %}
-
-## Result
-```
--2.05836
-```
 
 **Last Modification date:** 3 April 2018

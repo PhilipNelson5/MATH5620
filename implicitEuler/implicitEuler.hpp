@@ -1,5 +1,5 @@
-#ifndef EXPLICIT_EULER_HPP
-#define EXPLICIT_EULER_HPP
+#ifndef IMPLICIT_EULER_HPP
+#define IMPLICIT_EULER_HPP
 
 #include "../machineEpsilon/maceps.hpp"
 #include <iomanip>
