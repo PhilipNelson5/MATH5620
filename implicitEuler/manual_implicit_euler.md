@@ -22,15 +22,19 @@ layout: default
 ## Code
 {% highlight c++ %}
 template <typename T, typename F>
-T implicit_euler(T x0, T y0, T x, T dt, F f)
+implicit_euler (F f,T df,T x0,T t0,T tf,const unsigned int MAX_ITERATIONS)
 {
-  auto tol = maceps<T>().maceps;
-  while (std::abs(x - x0) > tol)
+  auto h=(tf-t0)/n;
+  auto t=linspace(t0,tf,n+1);
+  auto y=zeros(n+1,length(y0));
+  auto y(1,:)=y0;
+  for (auto i=0u; i < MAX_ITERATIONS; ++i)
   {
-    y0 = y0 + (dt * f(x0, y0));
-    x0 += dt;
+    x0=y(i,:);
+    x1=x0-inv(eye(length(y0))-h*feval(df,t(i),x0))*(x0-h*feval(f,t(i),x0)’-y(i,:)’);
+    x1 = newtons_method(f, dt, x0)
+    y(i+1,:)=x1’;
   }
-  return y0;
 }
 {% endhighlight %}
 
