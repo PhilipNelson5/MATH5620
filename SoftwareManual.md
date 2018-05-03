@@ -85,6 +85,27 @@ title: MATH 5620 Software Manual
 | :-----------------|:---------------|
 | **Write up**      | [Experiments 7.1, 7.2, 7.4](./hw6_experiments.md)|
 
+### Homework 7
+*due: 5 May 2018*
+
+| Problem           | Software Manual|
+| :-----------------|:---------------|
+| **Problem 1.**    | [Heat Equation - Explicit Euler](./5.1IVP/IVP_test)|
+| **Problem 2.**    | [Heat Equation - Implicit Euler](./explicitEulerTest/manual_explicit_euler_test)|
+| **Problem 3.**    | [Changing Time Time Step](./implicitEuler/manual_implicit_euler)|
+| **Problem 4.**    | [Heat Equation - Predictor Corrector](./rungeKuttaOrder2/manual_runge_kutta_order2)|
+| **Problem 5.**    | [Heat Equation - Runge Kutta Order 4](./predictorCorrector/manual_predictor_corrector)|
+
+### Homework 8
+*due: 5 May 2018*
+
+| Problem           | Software Manual|
+| :-----------------|:---------------|
+| **Problem 1.1**    | [Upwinding](./5.1IVP/IVP_test)|
+| **Problem 1.2**    | [Lax-Wendorff Method](./explicitEulerTest/manual_explicit_euler_test)|
+| **Problem 1.3**    | [Warming and Beam Method](./implicitEuler/manual_implicit_euler)|
+| **Problem 2**      | [vonNeuman Stability Analysis](./implicitEuler/manual_implicit_euler)|
+
 -----
 
 ### Basic Routines
