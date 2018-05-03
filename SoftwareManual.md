@@ -83,10 +83,7 @@ title: MATH 5620 Software Manual
 
 | Problem           | Software Manual|
 | :-----------------|:---------------|
-| **Problem 1.**    | [Experiments 7.1, 7.2, 7.4](./template.md)|
-| **Problem 2.**    | [Experiment - Implicit Euler](./template.md)|
-| **Problem 3.**    | [Experiment - Predictor Corrector](./template.md)|
-| **Problem 4.**    | [Experiment - Runge Kutta](./template.md)|
+| **Write up**      | [Experiments 7.1, 7.2, 7.4](./hw6_experiments.md)|
 
 -----
 
