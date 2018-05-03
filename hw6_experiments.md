@@ -44,13 +44,13 @@ int main() {
     cout << Euler(0, 1, 2, .1, .001, 2000, [=](T y, T yk){ return y - yk + 100 * h * y; }) << endl << endl; // 7.3
 
 
-    cout << "Problem 4: Adam-Bash-Moul 3 " << endl;
+    cout << "Problem 4: Adam`s Bashforth - Adam's Moulton" << endl;
     cout << AdamBashMoul3(0, 1, 2, .001, [=](T y, T yk){ return y - yk - h * y; }) << endl;               // 7.1
     cout << AdamBashMoul3(0, 1, 2, .001, [=](T y, T yk){ return y - yk + h * y; }) << endl;               // 7.2
     cout << AdamBashMoul3(0, 1, 2, .001, [=](T y, T yk){ return y - yk + 100 * h * y; }) << endl << endl; // 7.3
 
 
-    cout << "Problem 5: Runge Kutta 4 " << endl;
+    cout << "Problem 5: Runge Kutta" << endl;
     cout << RungeKutta4(0, 1, 2, .001, [=](T y, T yk){ return y - yk - h * y; }) << endl;               // 7.1
     cout << RungeKutta4(0, 1, 2, .001, [=](T y, T yk){ return y - yk + h * y; }) << endl;               // 7.2
     cout << RungeKutta4(0, 1, 2, .001, [=](T y, T yk){ return y - yk + 100 * h * y; }) << endl << endl; // 7.3
@@ -84,13 +84,13 @@ Explicit 10^-1
 -6.01633e+41
 
 
-Problem 4: Adam-Bash-Moul 3
+Problem 4: Adam`s Bashforth - Adam's Moulton
 -0.416147
 -0.416147
 7.69951e+283
 
 
-Problem 5: Runge Kutta 4
+Problem 5: Runge Kutta
 -0.416146
 -0.416147
 -0.416147
