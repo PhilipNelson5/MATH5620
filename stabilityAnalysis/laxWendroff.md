@@ -18,10 +18,10 @@ layout: default
 
 \\(= 1 - iv \Big( 2\sin(\frac{\xi h}{2})cos(\frac{\xi h}{2} \Big) + v^2 \Big( 2sin^2(\frac{\xi h}{2}) \Big)\\)
 
-\\(\implies |g(\xi)|^2 = \Big( 1 - 2sin^2(\frac{\xi h}{2}) \Big)^2 + 4\sin^2(\frac{\xi h}{2})cos^2(\frac{\xi h}{2}\\)
+\\( \Rightarrow |g(\xi)|^2 = \Big( 1 - 2sin^2(\frac{\xi h}{2}) \Big)^2 + 4\sin^2(\frac{\xi h}{2})cos^2(\frac{\xi h}{2}\\)
 
 \\(= 1 - 4v^2(1 - v^2)sin^4(\frac{\xi h}{2})\\)
 
-\\(\implies \text{stable for } |v| \leq 1\\)
+\\( \implies \text{stable for } |v| \leq 1\\)
 
 **Last Modification date:** 5 May 2018
