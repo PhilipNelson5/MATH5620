@@ -21,7 +21,7 @@ layout: default
 
 ## Input
 
-```
+{% highlight c++ %}
 upwinding(const T xDomain[],
           const T tDomain[],
           const T dx,
@@ -29,7 +29,7 @@ upwinding(const T xDomain[],
           F eta,
           const T c
          )
-```
+{% endhighlight %}
 
 * `T xDomain[]` - two member array with the spacial bounds
 * `T tDomain[]` - two member array with the temporal bounds
