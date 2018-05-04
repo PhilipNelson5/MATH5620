@@ -17,8 +17,10 @@ layout: default
 \\[= 1 - iv\sin(\xi h) + v^2(\cos(\xi h) - 1)\\]
 
 \\[= 1 - iv \Big( 2\sin(\frac{\xi h}{2})cos(\frac{\xi h}{2} \Big) + v^2 \Big( 2sin^2(\frac{\xi h}{2}) \Big)\\]
+\\[ = 1 - iv \Big( 2\sin(\frac{\xi h}{2})cos(\frac{\xi h}{2} \Big) + v^2 \Big( 2sin^2(\frac{\xi h}{2}) \Big) \\]
 
 \\[ \implies |g(\xi)|^2 = \Big( 1 - 2sin^2(\frac{\xi h}{2}) \Big)^2 + 4\sin^2(\frac{\xi h}{2})cos^2(\frac{\xi h}{2}\\]
+\\[ \implies |g(\xi)|^2 = \Big( 1 - 2sin^2(\frac{\xi h}{2}) \Big)^2 + 4\sin^2(\frac{\xi h}{2})cos^2(\frac{\xi h}{2} \\]
 
 \\[= 1 - 4v^2(1 - v^2)sin^4(\frac{\xi h}{2})\\]
 
