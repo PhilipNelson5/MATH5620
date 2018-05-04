@@ -5,11 +5,11 @@
 #include "random.hpp"
 #include "vector_util.hpp"
 #include <algorithm>
+#include <cmath>
 #include <iomanip>
 #include <iostream>
 #include <numeric>
 #include <tuple>
-#include <cmath>
 
 struct Point
 {
@@ -101,23 +101,24 @@ T determinant(Matrix<T, N, N> const& a)
 }
 
 /* Addition and Subtraction */
-#define matrix_add_subtract(op)                                                               \
-  template <typename T,                                                                       \
-            typename U,                                                                       \
-            std::size_t M,                                                                    \
-            std::size_t N,                                                                    \
-            typename R = decltype(T() op U())>                                                \
-  Matrix<R, M, N> operator op(Matrix<T, M, N> const& a, Matrix<U, M, N> const& b)             \
-  {                                                                                           \
-    R matrix[M][N];                                                                           \
-    for (auto i = 0u; i < M; ++i)                                                             \
-    {                                                                                         \
-      for (auto j = 0u; j < N; ++j)                                                           \
-      {                                                                                       \
-        matrix[i][j] = a.get(i, j) op b.get(i, j);                                            \
-      }                                                                                       \
-    }                                                                                         \
-    return matrix;                                                                            \
+#define matrix_add_subtract(op)                                                \
+  template <typename T,                                                        \
+            typename U,                                                        \
+            std::size_t M,                                                     \
+            std::size_t N,                                                     \
+            typename R = decltype(T() op U())>                                 \
+  Matrix<R, M, N> operator op(                                                 \
+    Matrix<T, M, N> const& a, Matrix<U, M, N> const& b)                        \
+  {                                                                            \
+    R matrix[M][N];                                                            \
+    for (auto i = 0u; i < M; ++i)                                              \
+    {                                                                          \
+      for (auto j = 0u; j < N; ++j)                                            \
+      {                                                                        \
+        matrix[i][j] = a.get(i, j) op b.get(i, j);                             \
+      }                                                                        \
+    }                                                                          \
+    return matrix;                                                             \
   }
 
 matrix_add_subtract(+) matrix_add_subtract(-)
@@ -283,7 +284,8 @@ std::ostream& operator<<(std::ostream& o, Matrix<T, M, N> const& m)
     o << "| ";
     for (auto j = 0u; j < N; ++j)
     {
-      o << std::setw(10) << std::setprecision(3) << std::setfill(' ') << m.get(i, j);
+      o << std::setw(10) << std::setprecision(3) << std::setfill(' ')
+        << m.get(i, j);
     }
     o << " |" << std::endl;
   }
@@ -311,8 +313,9 @@ T infNorm(Matrix<T, M, N>& m)
 {
   std::array<T, N> rowSum;
   for (auto i = 0u; i < N; ++i)
-    rowSum[i] = std::accumulate(
-      m.begin(i), m.end(i), 0, [](T sum, T elem) { return sum + std::abs(elem); });
+    rowSum[i] = std::accumulate(m.begin(i), m.end(i), 0, [](T sum, T elem) {
+      return sum + std::abs(elem);
+    });
 
   return *std::max_element(rowSum.begin(), rowSum.end());
 }
@@ -361,7 +364,6 @@ Matrix<T, N * N, N * N> fivePointStencil()
     if (i + 3 == j) return 1;
     if (i == j + 3) return 1;
     return 0;
-
   });
   // return {
   //   {-4, 1, 0, 1, 0, 0, 0, 0, 0},
@@ -440,7 +442,8 @@ double conditionNumber(Matrix<T, N, M> m)
 template <typename T, std::size_t N>
 Matrix<T, int(std::sqrt(N)), int(std::sqrt(N))> arrayToMat(std::array<T, N> a)
 {
-  return Matrix<T, int(std::sqrt(N)), int(std::sqrt(N))>([&](int i, int j){return a[i * int(std::sqrt(N)) + j];});
+  return Matrix<T, int(std::sqrt(N)), int(std::sqrt(N))>(
+    [&](int i, int j) { return a[i * int(std::sqrt(N)) + j]; });
 }
 
 template <typename T, std::size_t N, typename F>
@@ -448,7 +451,7 @@ auto solveFivePointStencil(T a, T b, F f)
 {
   auto mesh = generateMesh<double, N>(a, b);
   auto bv = initMeshB(mesh, f);
-  auto stencil = fivePointStencil<double, N-2>();
+  auto stencil = fivePointStencil<double, N - 2>();
   auto res = stencil.solveLinearSystemLU(bv);
   return res;
 }
@@ -458,9 +461,29 @@ auto solveNinePointStencil(T a, T b, F f)
 {
   auto mesh = generateMesh<double, N>(a, b);
   auto bv = initMeshB(mesh, f);
-  auto stencil = ninePointStencil<double, N-2>();
+  auto stencil = ninePointStencil<double, N - 2>();
   auto res = stencil.solveLinearSystemLU(bv);
   return res;
+}
+
+template <typename T, std::size_t M, size_t N>
+Matrix<T, M, N> makeNDiag(std::vector<T> const& entries,
+                          unsigned int const& offset)
+{
+  return Matrix<T, M, N>(
+    [=](const unsigned int& row, const unsigned int& col) -> T {
+      const int start = row + offset;
+      const int end = start + entries.size() - 1;
+
+      if ((int)col >= start && (int)col <= end)
+      {
+        return entries[(int)col - row - offset];
+      }
+      else
+      {
+        return 0;
+      }
+    });
 }
 
 #endif

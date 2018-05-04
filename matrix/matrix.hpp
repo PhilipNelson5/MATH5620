@@ -91,7 +91,10 @@ public:
 
   T get(unsigned int const& i, unsigned int const& j) const { return m[i][j]; }
 
-  void set(unsigned int const& i, unsigned int const& j, T const& val) { m[i][j] = val; }
+  void set(unsigned int const& i, unsigned int const& j, T const& val)
+  {
+    m[i][j] = val;
+  }
 
   std::array<T, N>& operator[](int x) { return m[x]; }
 
@@ -100,10 +103,14 @@ public:
   auto end(unsigned int n) { return m[n].end(); }
 
   /* Swap rows r1 and r2 */
-  void swapRows(unsigned int const& r1, unsigned int const& r2) { std::swap(m[r1], m[r2]); }
+  void swapRows(unsigned int const& r1, unsigned int const& r2)
+  {
+    std::swap(m[r1], m[r2]);
+  }
 
   /* return the absolute largest element of a col starting at a given row */
-  unsigned int findLargestInCol(unsigned int const& col, unsigned int const& row = 0)
+  unsigned int findLargestInCol(unsigned int const& col,
+                                unsigned int const& row = 0)
   {
     T max = row;
     for (auto i = row + 1; i < M; ++i)
@@ -181,7 +188,7 @@ public:
 
   std::array<T, M> solveLinearSystemLU(std::array<T, M> b)
   {
-    auto[L, U, P] = luFactorize();
+    auto [L, U, P] = luFactorize();
     auto y = L.forwardSub(P * b);
     auto x = U.backSub(y);
     return x;
@@ -230,10 +237,12 @@ public:
     return triDiagThomas(a, b, c, d);
   }
 
-  Matrix<T, N * N, N * N> blockToMatrix(Matrix<Matrix<T, N, N>, N * N, N * N> block)
+  Matrix<T, N * N, N * N> blockToMatrix(
+    Matrix<Matrix<T, N, N>, N * N, N * N> block)
   {
-    Matrix<T, N * N, N * N> res(
-      [&](int i, int j) { return block[i / N][j / N][i - (N * (i / N))][j - (N * (j / N))]; });
+    Matrix<T, N * N, N * N> res([&](int i, int j) {
+      return block[i / N][j / N][i - (N * (i / N))][j - (N * (j / N))];
+    });
 
     return res;
   }
