@@ -101,7 +101,7 @@ title: MATH 5620 Software Manual
 
 | Problem           | Software Manual|
 | :-----------------|:---------------|
-| **Problem 1.1**   | [Upwinding](./Upwinding/manual_upwinding)|
+| **Problem 1.1**   | [Upwinding](./upwinding/manual_upwinding)|
 | **Problem 1.2**   | [Lax-Wendorff Method](./explicitEulerTest/manual_explicit_euler_test)|
 | **Problem 1.3**   | [Warming and Beam Method](./implicitEuler/manual_implicit_euler)|
 | **Problem 2**     | [vonNeuman Stability Analysis](./implicitEuler/manual_implicit_euler)|
