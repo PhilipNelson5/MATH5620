@@ -22,7 +22,7 @@ layout: default
 ## Input
 
 {% highlight c++ %}
-lax_wendorf(const T xDomain[],
+warming_and_beam(const T xDomain[],
           const T tDomain[],
           const T dx,
           const T dt,
