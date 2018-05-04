@@ -100,7 +100,7 @@ int main()
   {
     for (auto j = 0u; j < solution[i].size(); ++j)
     {
-      std::cout << std::setprecision(3) << std::setw(10) << solution[i][j]
+      std::cout << std::setprecision(3) << std::setw(10) << solution[j][i]
                 << " ";
     }
     std::cout << '\n';
