@@ -22,7 +22,7 @@ int main()
   {
     for (auto j = 0u; j < solution[i].size(); ++j)
     {
-      std::cout << std::setprecision(3) << std::setw(7) << solution[i][j]
+      std::cout << std::setprecision(3) << std::setw(7) << solution[j][i]
                 << " ";
     }
     std::cout << '\n';
