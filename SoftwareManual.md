@@ -92,7 +92,9 @@ title: MATH 5620 Software Manual
 | :-----------------|:---------------|
 | **Problem 1.**    | [Heat Equation - Explicit Euler](./heatEquations/manual_heat_equation_explicit_euler)|
 | **Problem 2.**    | [Heat Equation - Implicit Euler](./heatEquations/manual_heat_equation_implicit_euler)|
-<!-- | **Problem 3.**    | [Changing Time Time Step](./heatEquations/manual_heat_equation)| -->
+{% comment %}
+| **Problem 3.**    | [Changing Time Time Step](./heatEquations/manual_heat_equation)|
+{% endcomment %}
 | **Problem 4.**    | [Heat Equation - Predictor Corrector](./heatEquations/manual_heat_equation_predictor_corrector)|
 | **Problem 5.**    | [Heat Equation - Runge Kutta Order 4](./heatEquations/manual_heat_equation_runge_kutta)|
 
