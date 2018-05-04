@@ -11,6 +11,7 @@ layout: default
 
 **Author:** Philip Nelson
 (see also p.213 of text)
+ree
 
 \\[g(\xi) = 1 - \frac{1}{2}v(e^{i\xi h} - e^{-i\xi h}) + \frac{1}{2}v^2(e^{i\xi h} - 2 + e^{-i\xi h})\\]
 
