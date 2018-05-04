@@ -7,6 +7,59 @@ title: MATH 5620 Software Manual
 
 # Table of Contents
 
+_(Homework problems below)_
+
+### Basic Routines
+- [Machine Epsilon](./machineEpsilon/manual)
+- [Absolute and Relative Error](./error/manual)
+- [Logistic Differential Equation](./logistic/manual)
+- [Second Order Linear DE with Constant Coefficients](./secondOrderLinear/manual)
+
+### Norms
+- [Vector P Norm](./matrix/manual_vector_pnorm)
+- [Vector Infinity Norm](./matrix/manual_vector_infinity_norm)
+- [Matrix One Norm](./matrix/manual_matrix_one_norm)
+- [Matrix Infinity Norm](./matrix/manual_matrix_infinity_norm)
+
+### Linear Solvers
+- [Thomas Algorithm](./matrix/manual_thomas_algorithm)
+- [Jacobi Iteration](./matrix/manual_jacobi_iteration)
+- [Conjugate Gradient](./conjugateGradient/manual_conjugate_gradient)
+- [Linear Solver by LU Factorization](./matrix/manual_linear_solve_lu)
+  - [Lu Factorization](./matrix./manual_lu_factorization)
+  - [Forward Substitution](./matrix./manual_forward_sub)
+  - [Back Substitution](./matrix./manual_back_sub)
+
+### Eigenvalue Methods
+- [Power Method Iteration for Largest Eigenvalue](./matrix/manual_power_iteration)
+- [Inverse Power Method for Smallest Eigenvalue](./matrix/manual_inverse_power_iteration)
+- [Power Method Iteration for Solving 2nd Order FD Elliptic ODE](./matrix/example_power_iteration_elliptic_ode)
+- [Inverse Power Method for Solving 2nd Order FD Elliptic ODE](./matrix/example_inverse_power_iteration_elliptic_ode)
+
+### Elliptic Problems
+- [Finite Difference Coefficients](./finiteDiffMethods/manual_finite_diff_coeff)
+- [Initialize Elliptic ODE](./finiteDiffMethods/manual_init_elliptic_ode)
+- [Solve Elliptic ODE](./finiteDiffMethods/manual_solve_elliptic_ode)
+- [Solve Laplace Equation with 5-point Stencil](./matrix/manual_solve_five_point_stencil)
+  - [Generate 5-point Stencil](./matrix/manual_gen_five_point_stencil)
+  - [Generate Mesh](./matrix/manual_gen_mesh)
+  - [Initialize B for Mesh](./matrix/manual_init_b)
+
+### First Order IVPs
+- [Explicit Euler](./explicitEuler/manual_explicit_euler)
+- [Implicit Euler](./implicitEuler/manual_implicit_euler)
+  - [Newton's Method](./newtonsMethod/manual_newtons_method)
+- [Runge Kutta order 2](./rungeKuttaOrder2/manual_runge_kutta_order2)
+- [Runge Kutta order 4](./rungeKuttaOrder4/manual_runge_kutta_order4)
+- [Predicticor Corrector - Adams Bashforth / Adams Moulton](./predictorCorrector/manual_predictor_corrector)
+
+### Parabolic Problems
+- [Upwinding](./upwinding/manual_upwinding)
+- [Lax-Wendorff Method](./laxWendroff/manual_lax_wendroff)
+- [Warming and Beam Method](./warmingAndBeam/manual_warming_and_beam)
+
+---
+
 ### Homework 1
 *due: 25 January 2018*
 
@@ -108,30 +161,3 @@ title: MATH 5620 Software Manual
 | **Problem 1.3**   | [Warming and Beam Method](./warmingAndBeam/manual_warming_and_beam)|
 | **Problem 2.1**   | [vonNeuman Stability Analysis Lax Wendroff](./stabilityAnalysis/laxWendroff)|
 | **Problem 2.2**   | [vonNeuman Stability Analysis Warming and Beam](./stabilityAnalysis/warmingAndBeam)|
-
------
-
-### Basic Routines
-- [Machine Epsilon](./machineEpsilon/manual)
-- [Absolute and Relative Error](./error/manual)
-- [Logistic Differential Equation](./logistic/manual)
-- [Second Order Linear DE with Constant Coefficients](./secondOrderLinear/manual)
-
-### Norms
-- [Vector P Norm](./matrix/manual_vector_pnorm)
-- [Vector Infinity Norm](./matrix/manual_vector_infinity_norm)
-- [Matrix One Norm](./matrix/manual_matrix_one_norm)
-- [Matrix Infinity Norm](./matrix/manual_matrix_infinity_norm)
-
-### Linear Solvers
-- [Thomas Algorithm](./matrix/manual_thomas_algorithm)
-- [Jacobi Iteration](./matrix/manual_jacobi_iteration)
-- [Linear Solver by LU Factorization](./matrix/manual_linear_solve_lu)
-  - [Lu Factorization](./matrix./manual_lu_factorization)
-  - [Forward Substitution](./matrix./manual_forward_sub)
-  - [Back Substitution](./matrix./manual_back_sub)
-
-### Finite Difference Methods
-- [Finite Difference Coefficients](./finiteDiffMethods/manual_finite_diff_coeff)
-- [Initialize Elliptic ODE](./finiteDiffMethods/manual_init_elliptic_ode)
-- [Solve Elliptic ODE](./finiteDiffMethods/manual_solve_elliptic_ode)
