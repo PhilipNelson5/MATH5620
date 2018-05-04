@@ -23,12 +23,12 @@ layout: default
 
 {% highlight c++ %}
 warming_and_beam(const T xDomain[],
-          const T tDomain[],
-          const T dx,
-          const T dt,
-          F eta,
-          const T c
-         )
+                 const T tDomain[],
+                 const T dx,
+                 const T dt,
+                 F eta,
+                 const T c
+                )
 {% endhighlight %}
 
 * `T xDomain[]` - two member array with the spacial bounds
