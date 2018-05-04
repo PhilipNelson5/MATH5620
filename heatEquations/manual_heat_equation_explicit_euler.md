@@ -1,5 +1,5 @@
 ---
-title: Heat Equation
+title: Heat Equations
 math: true
 layout: default
 ---
@@ -9,7 +9,7 @@ layout: default
 <a href="https://philipnelson5.github.io/MATH5620/SoftwareManual"> Table of Contents </a>
 # Heat Equation
 
-**Routine Name:** Heat Equation
+**Routine Name:** heat_explicit_euler
 
 **Author:** Philip Nelson
 
