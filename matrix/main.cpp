@@ -32,7 +32,7 @@ void runTests()
   Matrix<int, 2, 2> _e_neg({{-4, 0}, {-1, 9}});
   Matrix<int, 3, 3> _id({{1, 0, 0}, {0, 1, 0}, {0, 0, 1}});
   Matrix<int, 3, 3> f({{6, 1, 1}, {4, -2, 5}, {2, 8, 7}});
-  Matrix<int, 1, 3> g({{2, 4, 6}});
+  // Matrix<int, 1, 3> g({{2, 4, 6}});
   Matrix<int, 3, 1> h({{7}, {9}, {11}});
   Matrix<int, 3, 3> i({{6, 1, 1}, {4, -2, 5}, {2, 8, 7}});
   Matrix<int, 2, 3> _i_row({{6, 1, 1}, {2, 8, 7}});
@@ -42,7 +42,8 @@ void runTests()
   Matrix<int, 3, 3> k({{6, 1, 1}, {4, -2, 5}, {2, 8, 7}});
   k.swapRows(0, 1);
   std::array<double, 4> l = {{11, 18, -20, 5}};
-  Matrix<double, 4, 4> m({{-2, 1, 0, 0}, {1, -2, 1, 0}, {0, 1, -2, 1}, {0, 0, 1, -2}});
+  Matrix<double, 4, 4> m(
+    {{-2, 1, 0, 0}, {1, -2, 1, 0}, {0, 1, -2, 1}, {0, 0, 1, -2}});
   std::array<double, 4> n = {{4, 7, 2, 5}};
   auto o = m * n;
 
@@ -55,7 +56,7 @@ void runTests()
   test(-e, _e_neg, "unary minus, negation");
   test(identity<double, 3>(), _id, "identity construction");
   test(determinant(f), -306, "determinant");
-  test(dotProduct(g, h), 116, "dot product");
+  // test(dotProduct(g, h), 116, "dot product");
   test(removeRow(i, 1), _i_row, "remove row");
   test(removeCol(i, 1), _i_col, "remove col");
   test(k, _i_swap, "swap row");
@@ -71,11 +72,10 @@ void runTests()
 
 int main()
 {
-  runTests();
+  // runTests();
 
-  // Matrix<double, 4, 4> U({{3, 5, -6, 4}, {0, 4, -6, 9}, {0, 0, 3, 11}, {0, 0, 0, -9}});
-  // std::array<double, 4> x{4, 6, -7, 9};
-  // auto B = U * x;
+  // Matrix<double, 4, 4> U({{3, 5, -6, 4}, {0, 4, -6, 9}, {0, 0, 3, 11}, {0, 0,
+  // 0, -9}}); std::array<double, 4> x{4, 6, -7, 9}; auto B = U * x;
   //
   // std::cout << " U\n" << U << std::endl;
   // std::cout << " b\n" << B << std::endl;
@@ -87,10 +87,11 @@ int main()
   // std::cout << "1 Norm: " << pNorm(l, 1) << std::endl;
   // std::cout << "2 Norm: " << pNorm(l, 2) << std::endl;
 
-  // Matrix<double, 4, 4> A({{-2, 1, 0, 0}, {1, -2, 1, 0}, {0, 1, -2, 1, 0}, {0, 0, 1, -2}});
-  // Matrix<double, 2, 2> A({{6, -1}, {2, 3}});
-  // Matrix<double, 5, 5> A(
-  // [](unsigned int const& i, unsigned int const& j) { return 1.0 / (i + j + 1.0); });
+  // Matrix<double, 4, 4> A({{-2, 1, 0, 0}, {1, -2, 1, 0}, {0, 1, -2, 1, 0}, {0,
+  // 0, 1, -2}}); Matrix<double, 2, 2> A({{6, -1}, {2, 3}}); Matrix<double, 5,
+  // 5> A(
+  // [](unsigned int const& i, unsigned int const& j) { return 1.0 / (i + j
+  // + 1.0); });
 
   // auto eigval1 = inversePowerIteration(A, 1000u);
   // std::cout << "A\n" << A << std::endl;
@@ -106,4 +107,14 @@ int main()
   // auto answer = solveNinePointStencil<double, 25>(0.0, 1.0, sin);
   // auto finalMat = arrayToMat(answer);
   // std::cout << "Answer in Matrix Form\n" << finalMat << std::endl;
+
+  // Matrix<double, 5, 5> A(1, 10); // random 5x5 with values from 0-10
+  Matrix<double, 3, 3> A({{1, 2, 3}, {4, 5, 6}, {7, 8, 9}});
+  auto [L, U, P] = A.luFactorize();
+
+  std::cout << " L\n" << L << std::endl;
+  std::cout << " U\n" << U << std::endl;
+  std::cout << " P\n" << P << std::endl << std::endl;
+  std::cout << " LU\n" << L * U << std::endl;
+  std::cout << " PA\n" << P * A << std::endl;
 }
